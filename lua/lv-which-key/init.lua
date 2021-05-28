@@ -135,15 +135,15 @@ local mappings = {
         N = {"<cmd>LspGotoPrev<cr>", "Previous"},
         v = {"<cmd>Vista nvim_lsp<cr>", "Vista"}
     },
-    t = {
-        name = "+Trouble",
-        t = {"<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Trouble"},
-        w = {"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace"},
-        r = {"<cmd>TroubleToggle lsp_references<cr>", "References"},
-        d = {"<cmd>TroubleToggle lsp_definitions<cr>", "Definitions"},
-        q = {"<cmd>TroubleToggle quickfix<cr>", "Quick Fixes"},
-        l = {"<cmd>TroubleToggle loclist<cr>", "Location List"},
-    },
+    -- t = {
+        -- name = "+Trouble",
+        -- t = {"<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Trouble"},
+        -- w = {"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace"},
+        -- r = {"<cmd>TroubleToggle lsp_references<cr>", "References"},
+        -- d = {"<cmd>TroubleToggle lsp_definitions<cr>", "Definitions"},
+        -- q = {"<cmd>TroubleToggle quickfix<cr>", "Quick Fixes"},
+        -- l = {"<cmd>TroubleToggle loclist<cr>", "Location List"},
+    -- },
     s = {
         name = "+Search",
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
@@ -153,13 +153,20 @@ local mappings = {
         e = {"<cmd>Telescope lsp_references<cr>", "References"},
         D = {"<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics"},
         f = {"<cmd>Telescope find_files<cr>", "Find File"},
+        F = {"<cmd>RnvimrToggle<cr>", "Ranger File Explorer"},
         m = {"<cmd>Telescope marks<cr>", "Marks"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
         r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
         R = {"<cmd>Telescope registers<cr>", "Registers"},
         t = {"<cmd>Telescope live_grep<cr>", "Text"}
     },
-    S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}}
+    S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
+    l = {
+        name = 'LaTeX',
+        v = {'<cmd>VimtexView<cr>', 'View pdf'},
+        o = {'<cmd>VimtexCompileOutput<cr>', 'Compile Output'},
+        c = {'<cmd>VimtexCompile<cr>', 'Compile project'},
+    }
 }
 
 local wk = require("which-key")

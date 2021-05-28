@@ -23,6 +23,7 @@ vim.cmd([[
   tnoremap <Esc> <C-\><C-n>
 ]])
 
+
 -- TODO fix this
 -- resize with arrows
 -- vim.api.nvim_set_keymap('n', '<C-Up>', ':resize -2<CR>', {silent = true})

@@ -53,15 +53,20 @@ require('lsp.vim-ls')
 require('lsp.yaml-ls')
 -- require('lsp.elixir-ls')
 
-require("trouble").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-    position = "right",
-    auto_preview = false,
-    hover = "h"
-}
+-- require("trouble").setup {
+--     -- your configuration comes here
+--     -- or leave it empty to use the default settings
+--     -- refer to the configuration section below
+--     position = "right",
+--     auto_preview = false,
+--     hover = "h"
+-- }
 
-vim.cmd([[
-autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * TroubleRefresh
-]])
+
+-- vim.cmd([[
+-- autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * TroubleRefresh
+-- ]])
+vim.cmd('setlocal spell')
+vim.cmd('set spelllang=en_us')
+vim.cmd('hi Conceal ctermfg=223 ctermbg=235 guifg=#ebdbb2 guibg=#282828')
+vim.cmd([[inoremap <C-l> <c-g>u<Esc>[s1z=`]i<c-g>u]])

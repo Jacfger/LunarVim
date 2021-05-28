@@ -91,27 +91,36 @@ return require("packer").startup(
         use {"tpope/vim-surround", opt = true}
         use {"junegunn/fzf", opt = true}
         use {"junegunn/fzf.vim", opt = true}
-        use {
-          "folke/trouble.nvim",
-          requires = "kyazdani42/nvim-web-devicons",
-        }
+        -- use {
+        --   "folke/trouble.nvim",
+        --   requires = "kyazdani42/nvim-web-devicons",
+        -- }
 
         -- lsp extensions
         use {"nvim-lua/lsp_extensions.nvim", opt = true}
         use {"nvim-lua/completion-nvim", opt = true}
         use {"liuchengxu/vista.vim", opt = true}
+        
 
+
+        use {'sirver/ultisnips'}
+        -- Latex
+        use {"lervag/vimtex"}
+        -- use {'KeitaNakamura/tex-conceal.vim'}
+
+        
         require_plugin("fzf")
         require_plugin("fzf.vim")
-        require_plugin("vista.vim")
         require_plugin("vim-surround")
-        require_plugin("lsp_extensions.nvim")
-        require_plugin("completion-nvim")
         require_plugin("targets.vim")
         require_plugin("quick-scope")
         require_plugin("vim-fish")
         require_plugin("vim-visual-multi")
         require_plugin("vim-sneak")
+
+        require_plugin("completion-nvim")
+        require_plugin("vista.vim")
+        require_plugin("lsp_extensions.nvim")
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
         require_plugin("nvim-lspinstall")

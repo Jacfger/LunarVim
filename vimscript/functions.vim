@@ -71,3 +71,4 @@ function! QuickFixToggle()
         cclose
     endif
 endfunction
+
