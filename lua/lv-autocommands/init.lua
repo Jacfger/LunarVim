@@ -12,8 +12,8 @@ local typescriptreact_autoformat = {'BufWritePre', '*.tsx', 'lua vim.lsp.buf.for
 if O.tsserver.autoformat then
     table.insert(auto_formatters, javascript_autoformat)
     table.insert(auto_formatters, javascriptreact_autoformat)
-	table.insert(auto_formatters, typescript_autoformat)
-	table.insert(auto_formatters, typescriptreact_autoformat)
+    table.insert(auto_formatters, typescript_autoformat)
+    table.insert(auto_formatters, typescriptreact_autoformat)
 end
 
 local lua_format = {'BufWritePre', '*.lua', 'lua vim.lsp.buf.formatting_sync(nil, 1000)'}
@@ -27,6 +27,21 @@ if O.ruby.autoformat then table.insert(auto_formatters, ruby_format) end
 
 local go_format = {'BufWritePre', '*.go', 'lua vim.lsp.buf.formatting_sync(nil,1000)'}
 if O.go.autoformat then table.insert(auto_formatters, go_format) end
+
+local c_autoformat = {'BufWritePre', '*.c', 'lua vim.lsp.buf.formatting_sync(nil,1000)'}
+local cpp_autoformat = {'BufWritePre', '*.cpp', 'lua vim.lsp.buf.formatting_sync(nil,1000)'}
+local cc_autoformat = {'BufWritePre', '*.cc', 'lua vim.lsp.buf.formatting_sync(nil,1000)'}
+local h_autoformat = {'BufWritePre', '*.h', 'lua vim.lsp.buf.formatting_sync(nil,1000)'}
+local hpp_autoformat = {'BufWritePre', '*.hpp', 'lua vim.lsp.buf.formatting_sync(nil,1000)'}
+if O.clang.autoformat then
+    table.insert(auto_formatters, c_autoformat)
+    table.insert(auto_formatters, cpp_autoformat)
+    table.insert(auto_formatters, cc_autoformat)
+    table.insert(auto_formatters, h_autoformat)
+    table.insert(auto_formatters, hpp_autoformat)
+end
+
+-- vim.api.nvim_command('au! BufRead,BufNewFile *.fish set filetype=fish')
 
 utils.define_augroups({
     _general_settings = {
@@ -63,14 +78,24 @@ utils.define_augroups({
         {'BufWinEnter', '.sol', 'setlocal filetype=solidity'}, {'BufRead', '*.sol', 'setlocal filetype=solidity'},
         {'BufNewFile', '*.sol', 'setlocal filetype=solidity'}
     },
+    _fish = {
+        {'BufWinEnter', '.fish', 'setlocal filetype=fish'}, {'BufRead', '*.fish', 'setlocal filetype=fish'},
+        {'BufNewFile', '*.fish', 'setlocal filetype=fish'}
+    },
     _gemini = {
         {'BufWinEnter', '.gmi', 'setlocal filetype=markdown'}, {'BufRead', '*.gmi', 'setlocal filetype=markdown'},
         {'BufNewFile', '*.gmi', 'setlocal filetype=markdown'}
+    },
+    _latex = {
+        {'BufRead', '*.fish', 'VimtexCompile'},
     },
     _buffer_bindings = {
         {'FileType', 'dashboard', 'nnoremap <silent> <buffer> q :q<CR>'},
         {'FileType', 'lspinfo', 'nnoremap <silent> <buffer> q :q<CR>'},
         {'FileType', 'floaterm', 'nnoremap <silent> <buffer> q :q<CR>'},
+        {'FileType', 'rnvimr', 'tnoremap <silent> <buffer> <nowait> - <ESC>:q<CR>'},
+        {'FileType', 'rnvimr', 'inoremap <silent> <buffer> <nowait> - <ESC>:q<CR>'},
+        {'FileType', 'latex', 'set conceallevel=2'},
     },
     _auto_formatters = auto_formatters
 })

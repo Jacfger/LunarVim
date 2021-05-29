@@ -10,9 +10,10 @@ O = {
     wrap_lines = false,
     number = true,
     relative_number = true,
-    shell = 'bash',
-	  timeoutlen = 100,
+    shell = 'fish',
+    timeoutlen = 100,
     nvim_tree_disable_netrw = 0, 
+    extras = true,
 
     -- @usage pass a table with your desired languages
     treesitter = {
@@ -63,7 +64,10 @@ O = {
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
     },
     tailwindls = {filetypes = {'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact'}},
-    clang = {diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}},
+    clang = {
+        diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true},
+        autoformat = true,
+    },
 	ruby = {
 		diagnostics = {virtualtext = {spacing = 0, prefix = ""}, signs = true, underline = true},
 		filetypes = {'rb', 'erb', 'rakefile'}

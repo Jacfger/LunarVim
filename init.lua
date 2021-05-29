@@ -1,6 +1,7 @@
 require('lv-globals')
 vim.cmd('luafile '..CONFIG_PATH..'/lv-settings.lua')
 require('settings')
+require('lv-gitblame')
 require('plugins')
 require('lv-utils')
 require('lv-autocommands')
@@ -9,15 +10,28 @@ require('lv-nvimtree') -- This plugin must be required somewhere before colorsch
 require('colorscheme') -- This plugin must be required somewhere after nvimtree. Placing it before will break navigation keymappings
 require('lv-galaxyline')
 require('lv-comment')
+require('lv-gitblame')
 require('lv-compe')
 require('lv-barbar')
 require('lv-dashboard')
 require('lv-telescope')
 require('lv-gitsigns')
 require('lv-treesitter')
+require('lv-matchup')
 require('lv-autopairs')
 require('lv-rnvimr')
 require('lv-which-key')
+require('lv-lsp-rooter')
+require('lv-zen')
+
+-- extras
+if O.extras then
+    require('lv-numb')
+    require('lv-hop')
+    require('lv-colorizer')
+end
+
+
 
 -- TODO is there a way to do this without vimscript
 vim.cmd('source '..CONFIG_PATH..'/vimscript/functions.vim')
@@ -53,20 +67,26 @@ require('lsp.vim-ls')
 require('lsp.yaml-ls')
 -- require('lsp.elixir-ls')
 
--- require("trouble").setup {
---     -- your configuration comes here
---     -- or leave it empty to use the default settings
---     -- refer to the configuration section below
---     position = "right",
---     auto_preview = false,
---     hover = "h"
--- }
+require("trouble").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+    position = "right",
+    auto_preview = false,
+    hover = "h"
+}
 
+require('neoscroll').setup()
+require('todo-comments').setup()
+require('diffview').setup()
 
--- vim.cmd([[
--- autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * TroubleRefresh
--- ]])
+vim.cmd([[
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * TroubleRefresh
+]])
+
 vim.cmd('setlocal spell')
 vim.cmd('set spelllang=en_us')
+
 vim.cmd('hi Conceal ctermfg=223 ctermbg=235 guifg=#ebdbb2 guibg=#282828')
+
 vim.cmd([[inoremap <C-l> <c-g>u<Esc>[s1z=`]i<c-g>u]])

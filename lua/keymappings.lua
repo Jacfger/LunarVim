@@ -1,5 +1,4 @@
 vim.api.nvim_set_keymap('n', '-', ':RnvimrToggle<CR>', {noremap = true, silent = true})
-
 -- better window movement
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
@@ -22,7 +21,6 @@ vim.cmd([[
   inoremap <C-l> <C-\><C-N><C-w>l
   tnoremap <Esc> <C-\><C-n>
 ]])
-
 
 -- TODO fix this
 -- resize with arrows
@@ -52,9 +50,13 @@ vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silen
 vim.cmd('inoremap <expr> <c-j> (\"\\<C-n>\")')
 vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
 
--- fix to get netrw's gx command to work correctly 
+-- fix to get netrw's gx command to work correctly
 vim.api.nvim_set_keymap('n', 'gx', ":call netrw#BrowseX(expand((exists('g:netrw_gx')? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())<cr>", {noremap = true, silent = true})
 
+vim.cmd('vnoremap p "0p')
+vim.cmd('vnoremap P "0P')
+-- vim.api.nvim_set_keymap('v', 'p', '"0p', {silent = true})
+-- vim.api.nvim_set_keymap('v', 'P', '"0P', {silent = true})
 
 -- vim.cmd('inoremap <expr> <TAB> (\"\\<C-n>\")')
 -- vim.cmd('inoremap <expr> <S-TAB> (\"\\<C-p>\")')
@@ -72,3 +74,5 @@ vim.api.nvim_set_keymap('n', 'gx', ":call netrw#BrowseX(expand((exists('g:netrw_
 vim.api.nvim_set_keymap('', '<C-q>', ':call QuickFixToggle()<CR>', {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', 'Y', 'yg_', { noremap = true, silent = true })
+
+-- vim.api.nvim_set_keymap('n', 'vic', '?# %%<cr>VN', { noremap = true, silent = true })

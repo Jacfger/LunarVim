@@ -52,7 +52,7 @@ vim.g.mapleader = ' '
 vim.api.nvim_set_keymap('n', '<Leader>h', ':noh<CR>', {noremap = true, silent = true})
 
 -- explorer
-vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 
 -- telescope
 vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true, silent = true})
@@ -60,36 +60,53 @@ vim.api.nvim_set_keymap('n', '<Leader>f', ':Telescope find_files<CR>', {noremap 
 -- dashboard
 vim.api.nvim_set_keymap('n', '<Leader>;', ':Dashboard<CR>', {noremap = true, silent = true})
 
+-- Global search
+vim.api.nvim_set_keymap("n", "<leader>/", "<cmd>Telescope live_grep<cr>", {noremap = true, silent = true})
+
 -- Comments
-vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 
 -- close buffer
 vim.api.nvim_set_keymap("n", "<leader>c", ":BufferClose<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>w", ":write<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>w", ":wa<CR>", {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("n", "<leader>n", ":tabnew<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>v", ":Vista<CR>", {noremap = true, silent = true})
 
 -- pane controls
-vim.api.nvim_set_keymap("n", "<leader>p", "<c-w>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader><space>", ":Commands<CR>", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<leader>p", "<c-w>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader><space>", ":Telescope commands<CR>", {noremap = true, silent = true})
 
+-- open projects
+vim.api.nvim_set_keymap('n', '<leader>p', ":lua require'telescope'.extensions.project.project{}<CR>",
+                        {noremap = true, silent = true})
 -- TODO create entire treesitter section
 
 -- TODO support vim-surround in the which-key menus
 
 local mappings = {
     [" "] = "Commands",
-    ["/"] = "Comment",
+    ["/"] = "Global search",
     ["c"] = "Close Buffer",
-    ["e"] = "Explorer",
+    -- ["e"] = "Explorer",
+    o = {
+        name = "+Open new...",
+        s = {"<cmd>:NvimTreeToggle<cr>", "Sidebar"},
+        r = {"<cmd>:RnvimrToggle<cr>", "Ranger"},
+        p = {"<cmd>e ~/.config/nvim/<cr>", "Edit Private Config"},
+        t = {"<cmd>FloatermToggle<CR>", "Terminal"},
+        T = {"<cmd>FloatermNew --wintype=normal --height=8<CR>", "Terminal Below"},
+        P = {"<cmd>FloatermNew python<CR>", "Python"},
+        b = {"<cmd>FloatermNew broot<CR>", "Broot"},
+        o = {"<cmd>!open '%:p:h'<CR>", "Open File Explorer"},
+    },
     ["f"] = "Find File",
     ["h"] = "No Highlight",
     ["w"] = "Save",
-    ["p"] = "Panes",
     ["n"] = "New file (in tab)",
     ["v"] = "Vista",
+    ["p"] = "Projects",
     d = {
         name = "+Debug",
         b = {"<cmd>DebugToggleBreakpoint<cr>", "Toggle Breakpoint"},
@@ -119,7 +136,7 @@ local mappings = {
         A = {"<cmd>Lspsaga range_code_action<cr>", "Selected Action"},
         d = {"<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics"},
         D = {"<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics"},
-        f = {"<cmd>LspFormatting<cr>", "Format"},
+        f = {"<cmd>LspFormatting<cr><cmd>write<cr>", "Format"},
         i = {"<cmd>LspInfo<cr>", "Info"},
         h = {"<cmd>LspHover<cr>", "Hover"},
         l = {"<cmd>Lspsaga lsp_finder<cr>", "LSP Finder"},
@@ -133,17 +150,22 @@ local mappings = {
         S = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"},
         n = {"<cmd>LspGotoNext<cr>", "Next"},
         N = {"<cmd>LspGotoPrev<cr>", "Previous"},
-        v = {"<cmd>Vista nvim_lsp<cr>", "Vista"}
+        V = {"<cmd>Vista nvim_lsp<cr>", "Vista"},
+        v = {'<cmd>VimtexView<cr>', 'View pdf'},
+        c = {'<cmd>VimtexCompile<cr>', 'Compile Project Latex'},
+        C = {'<cmd>VimtexCompileOutput<cr>', 'Compile Output Latex'},
     },
-    -- t = {
-        -- name = "+Trouble",
-        -- t = {"<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Trouble"},
-        -- w = {"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace"},
-        -- r = {"<cmd>TroubleToggle lsp_references<cr>", "References"},
-        -- d = {"<cmd>TroubleToggle lsp_definitions<cr>", "Definitions"},
-        -- q = {"<cmd>TroubleToggle quickfix<cr>", "Quick Fixes"},
-        -- l = {"<cmd>TroubleToggle loclist<cr>", "Location List"},
-    -- },
+    t = {
+        name = "+Trouble",
+        t = {"<cmd>TroubleToggle<cr>", "Trouble"},
+        d = {"<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Trouble"},
+        w = {"<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace"},
+        r = {"<cmd>TroubleToggle lsp_references<cr>", "References"},
+        D = {"<cmd>TroubleToggle lsp_definitions<cr>", "Definitions"},
+        q = {"<cmd>TroubleToggle quickfix<cr>", "Quick Fixes"},
+        l = {"<cmd>TroubleToggle loclist<cr>", "Location List"},
+        o = {"<cmd>TroubleToggle todo<cr>", "TODOs"},
+    },
     s = {
         name = "+Search",
         b = {"<cmd>Telescope git_branches<cr>", "Checkout branch"},
@@ -153,19 +175,22 @@ local mappings = {
         e = {"<cmd>Telescope lsp_references<cr>", "References"},
         D = {"<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics"},
         f = {"<cmd>Telescope find_files<cr>", "Find File"},
-        F = {"<cmd>RnvimrToggle<cr>", "Ranger File Explorer"},
         m = {"<cmd>Telescope marks<cr>", "Marks"},
         M = {"<cmd>Telescope man_pages<cr>", "Man Pages"},
         r = {"<cmd>Telescope oldfiles<cr>", "Open Recent File"},
-        R = {"<cmd>Telescope registers<cr>", "Registers"},
-        t = {"<cmd>Telescope live_grep<cr>", "Text"}
+        R = {"<cmd>Telesope registers<cr>", "Registers"},
+        t = {"<cmd>Telescope live_grep<cr>", "Text"},
+        k = {"<cmd>Telescope keymaps<cr>", "Text"},
+        o = {"<cmd>TodoTelescope<cr>", "TODOs"}
     },
     S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}},
-    l = {
-        name = 'LaTeX',
-        v = {'<cmd>VimtexView<cr>', 'View pdf'},
-        o = {'<cmd>VimtexCompileOutput<cr>', 'Compile Output'},
-        c = {'<cmd>VimtexCompile<cr>', 'Compile project'},
+
+    -- extras
+    z = {
+        name = "+Zen",
+        s = {"<cmd>TZBottom<cr>", "toggle status line"},
+        t = {"<cmd>TZTop<cr>", "toggle tab bar"},
+        z = {"<cmd>TZAtaraxis<cr>", "toggle zen"},
     }
 }
 
