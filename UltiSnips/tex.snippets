@@ -429,14 +429,10 @@ endsnippet
 
 context "math()"
 snippet () "left( right)" iA
-\left( ${1:${VISUAL}} \right) $0
+\left(${1:${VISUAL}}\right) $0
 endsnippet
 
-snippet lr "left( right)" i
-\left( ${1:${VISUAL}} \right) $0
-endsnippet
-
-snippet lr( "left( right)" i
+snippet lr; "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
@@ -444,15 +440,15 @@ snippet lr| "left| right|" i
 \left| ${1:${VISUAL}} \right| $0
 endsnippet
 
-snippet lr{ "left\{ right\}" i
+snippet lr{ "left\{ right\}" iA
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
-snippet lrb "left\{ right\}" i
+snippet lrb "left\{ right\}" iA
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
-snippet lr[ "left[ right]" i
+snippet lr[ "left[ right]" iA
 \left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
@@ -699,7 +695,7 @@ snippet << "<<" iA
 \ll
 endsnippet
 
-
+context "math()"
 snippet ~~ "~" iA
 \sim 
 endsnippet
@@ -833,6 +829,9 @@ snippet letw "let omega" iA
 Let $\Omega \subset \C$ be open.
 endsnippet
 
+snippet CC "C" iA
+\mathbb{C}
+endsnippet
 
 snippet HH "H" iA
 \mathbb{H}
@@ -846,4 +845,28 @@ snippet itemize "itemize" iA
 \begin{itemize}
 	\itemize $0
 \end{itemize}
+endsnippet
+
+priority 100
+snippet '([^\s\{\}]+)tb;' "Bold text" riA
+\textbf{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 1
+snippet tb; "Bold text" iA
+\textbf{$1}$0
+endsnippet
+
+priority 1
+snippet s; "section" iA
+\section{$1}$0
+endsnippet
+
+priority 2
+snippet ss; "subsection" iA
+\subsection{$1}$0
+endsnippet
+priority 3
+snippet sss; "subsubsection" iA
+\subsubsection{$1}$0
 endsnippet

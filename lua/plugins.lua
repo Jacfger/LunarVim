@@ -165,7 +165,8 @@ return require("packer").startup(function(use)
     use {"tpope/vim-surround", opt = true}
     -- use {"junegunn/fzf", opt = true} -- Telescope does most of this?
     -- use {"junegunn/fzf.vim", opt = true}
-    use {"lervag/vimtex", opt = true}
+    use {"lervag/vimtex"}
+    use {"jpalardy/vim-slime"}
     use {"skywind3000/asyncrun.vim", opt = true}
     use {"Shatur95/neovim-cmake", opt = true}
     use 'karb94/neoscroll.nvim'
@@ -182,7 +183,6 @@ return require("packer").startup(function(use)
     require_plugin("ultisnips")
     require_plugin("vim-floaterm")
     require_plugin("asyncrun.vim")
-    require_plugin("vimtex")
     require_plugin("neovim-cmake")
     require_plugin("fzf")
     require_plugin("fzf.vim")

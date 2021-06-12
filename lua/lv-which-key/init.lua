@@ -150,6 +150,7 @@ local mappings = {
         S = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"},
         n = {"<cmd>LspGotoNext<cr>", "Next"},
         N = {"<cmd>LspGotoPrev<cr>", "Previous"},
+        m = {"<cmd>VimtexToggleMain<cr>", "Toggle between subfiles or main tex"},
         V = {"<cmd>Vista nvim_lsp<cr>", "Vista"},
         v = {'<cmd>VimtexView<cr>', 'View pdf'},
         c = {'<cmd>VimtexCompile<cr>', 'Compile Project Latex'},
