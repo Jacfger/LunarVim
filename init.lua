@@ -84,9 +84,8 @@ vim.cmd([[
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost * TroubleRefresh
 ]])
 
-vim.cmd('setlocal spell')
-vim.cmd('set spelllang=en_us')
+-- vim.cmd('setlocal spell')
+-- vim.cmd('set spelllang=en_us')
+-- vim.cmd([[inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u]])
 
 vim.cmd('hi Conceal ctermfg=223 ctermbg=235 guifg=#ebdbb2 guibg=#282828')
-
-vim.cmd([[inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u]])
