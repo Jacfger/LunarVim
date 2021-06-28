@@ -44,7 +44,7 @@ vim.o.guifont = "FiraCode Nerd Font:h13"
 
 --- vimtex
 vim.g.tex_flavor='latex'
-vim.g.vimtex_view_method='zathura'
+-- vim.g.vimtex_view_method='zathura'
 vim.g.vimtex_quickfix_mode=0
 vim.g.tex_conceal = 'abdmgs'
 vim.g.vimtex_subfile_start_local = 1
@@ -80,6 +80,10 @@ vim.g.floaterm_width=0.8
 vim.g.floaterm_height=0.8
 vim.g.floaterm_wintitle=0
 vim.g.floaterm_autoclose=1
+
+
+vim.g.conda_startup_wrn_suppress=1
+vim.g.conda_startup_msg_suppress=0
 
 
 -- vim.o.conceallevel = 2
