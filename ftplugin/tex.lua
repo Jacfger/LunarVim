@@ -1,5 +1,7 @@
 vim.opt_local.wrap = true
 vim.opt_local.spell = true
+vim.cmd "set spelllang=en_us"
+vim.cmd "inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u"
 
 if not require("lv-utils").check_lsp_client_active "texlab" then
   require("lspconfig").texlab.setup {

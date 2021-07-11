@@ -559,7 +559,19 @@ return require("packer").startup(function(use)
   -- amedhi plugins
 
   -- LSP get function signature
-  use { "ray-x/lsp_signature.nvim", module = "lsp_signature" }
+
+--   use { "ray-x/lsp_signature.nvim", config = function ()
+--     local lsp_sign_opt = O.plugin.lsp_signature
+--     lsp_sign_opt.bind = true
+--     lsp_sign_opt.handler_opts = {
+--       border = O.lsp.border, -- double, single, shadow, none
+--     }
+--     lsp_sign_opt.hint_scheme = "String"
+--     lsp_sign_opt.hi_parameter = "Search"
+-- 
+--     require("lsp_signature").on_attach(lsp_sign_opt)
+--     end,
+--   }
 
   -- See jumpable characters
   use {
@@ -610,7 +622,10 @@ return require("packer").startup(function(use)
   -- use {"Shatur95/neovim-cmake"}
 
   -- Auto activating snippets
-  -- use {"SirVer/ultisnips"} -- TODO: port my snippets from vscode
+  use {
+    "SirVer/ultisnips",
+    ft = 'tex',
+  } -- TODO: port my snippets from vscode
 
   -- Send to terminal
   use {
@@ -628,8 +643,8 @@ return require("packer").startup(function(use)
   use {
     "kassio/neoterm",
     config = "require('lv-neoterm')",
-    cmd = { "T", "Tmap", "Tnew", "Ttoggle", "Topen" },
-    keys = { "gx", "gxx" },
+    -- cmd = { "T", "Tmap", "Tnew", "Ttoggle", "Topen" },
+    -- keys = { "gx", "gxx" },
   }
 
   -- Repeat plugin commands
@@ -692,19 +707,6 @@ return require("packer").startup(function(use)
       easing_function = "sine",        -- Default easing function
     },
   } ]]
-
-  -- Code Minimap
-  use {
-    "wfxr/minimap.vim",
-    event = "BufWinEnter",
-    run = "cargo install --locked code-minimap",
-    config = function()
-      table.insert(vim.g.minimap_block_filetypes, "dashboard")
-      vim.g.minimap_width = 2 -- Like a scrollbar
-      -- vim.g.minimap_highlight_search = true
-      -- vim.g.minimap_highlight_range = true
-    end,
-  }
 
   -- Session Management
   use { "rmagatti/auto-session" }

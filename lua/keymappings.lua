@@ -239,7 +239,7 @@ map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", sile)
 
 -- Format buffer -- TODO: switch between neoformat and lsp
 -- map("n", "gf", "<cmd>lua vim.lsp.buf.formatting()<cr>", nore)
-map("n", "gf", "<cmd>Neoformat<cr>", nore)
+-- map("n", "gf", "<cmd>Neoformat<cr>", nore)
 -- Format a range -- TODO: can do with Neoformat?
 -- vim.api.nvim_set_keymap("n", "gm", [[<cmd>lua require("lsp.functions").format_range_operator()<CR>]], nore)
 vim.api.nvim_set_keymap("n", "gm", [[<cmd>lua require("lv-neoformat").format_range_operator()<CR>]], nore)

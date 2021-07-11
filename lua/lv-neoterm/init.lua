@@ -8,7 +8,6 @@ vim.g.neoterm_automap_keys = "<leader>te" -- FIXME: This doesnt work!?
 
 local remap = vim.api.nvim_set_keymap
 -- Use gx{text-object} in normal mode
-remap("n", "gx", "<Plug>(neoterm-repl-send)", {})
-remap("n", "gxx", "<Plug>(neoterm-repl-send-line)", {})
 -- Send selected contents in visual mode.
-remap("x", "gx", "<Plug>(neoterm-repl-send)", {})
+remap("v", "gx", "<Plug>(neoterm-repl-send)", {})
+-- remap("v", "gx", ":TREPLSendSelection", {})

@@ -8,7 +8,7 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
-O.colorscheme = "snazzy"
+O.colorscheme = "gruvbox"
 O.shell = "fish"
 O.lushmode = false
 O.hlsearch = true -- This has a bug
@@ -91,7 +91,7 @@ vim.g.VM_maps = {
   ["Find Operator"] = "m",
 }
 vim.g.VM_leader = [[\]]
-vim.g.VM_theme = "neon"
+vim.g.VM_theme = "nord"
 
 -- TODO: figure out mappings for this that dont conflict with autocomplete
 vim.g.UltiSnipsExpandTrigger = "<f5>"
