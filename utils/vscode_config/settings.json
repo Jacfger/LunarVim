@@ -618,12 +618,6 @@
       ]
     },
     {
-      "key": "M",
-      "name": "Minimap",
-      "type": "command",
-      "command": "editor.action.toggleMinimap"
-    },
-    {
       "key": "n",
       "name": "No Highlight",
       "type": "command",
@@ -991,7 +985,6 @@
     "**/.factorypath": true
   },
   "terminal.external.osxExec": "iTerm.app",
-  "editor.minimap.enabled": false,
   "workbench.activityBar.visible": true,
   "leetcode.workspaceFolder": "/Users/chris/Repos/leetcode",
   "leetcode.defaultLanguage": "javascript",

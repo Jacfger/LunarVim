@@ -559,19 +559,19 @@ return require("packer").startup(function(use)
   -- amedhi plugins
 
   -- LSP get function signature
-
---   use { "ray-x/lsp_signature.nvim", config = function ()
---     local lsp_sign_opt = O.plugin.lsp_signature
---     lsp_sign_opt.bind = true
---     lsp_sign_opt.handler_opts = {
---       border = O.lsp.border, -- double, single, shadow, none
---     }
---     lsp_sign_opt.hint_scheme = "String"
---     lsp_sign_opt.hi_parameter = "Search"
--- 
---     require("lsp_signature").on_attach(lsp_sign_opt)
---     end,
---   }
+  use {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      local lsp_sign_opt = O.plugin.lsp_signature
+      lsp_sign_opt.bind = true
+      lsp_sign_opt.handler_opts = {
+        border = O.lsp.border, -- double, single, shadow, none
+      }
+      lsp_sign_opt.hint_scheme = "String"
+      lsp_sign_opt.hi_parameter = "Search"
+      require("lsp_signature").on_attach(lsp_sign_opt)
+    end,
+  }
 
   -- See jumpable characters
   use {
@@ -607,6 +607,10 @@ return require("packer").startup(function(use)
         omap is <Plug>(textobj-sandwich-query-i)
         omap as <Plug>(textobj-sandwich-query-a)
     ]]
+      -- Force clear the sandwhich style bindings (compat with lightspeed)
+      vim.api.nvim_del_keymap("n", "sd")
+      vim.api.nvim_del_keymap("n", "sa")
+      -- vim.api.nvim_del_keymap("n", "sc")
     end,
     event = "BufRead",
     disable = not O.plugin.surround.active,

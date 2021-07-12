@@ -58,7 +58,7 @@ local mappings = {
     "Find File",
   },
   h = {
-    "<Plug>ClearHighLights", -- "<cmd>noh<CR><cmd>call minimap#vim#ClearColorSearch()<cr>"
+    "<Plug>ClearHighLights",
     "No Highlight",
   },
   w = { "<cmd>up<CR>", "Write" },
@@ -71,7 +71,6 @@ local mappings = {
     o = { "<cmd>!open '%:p:h'<CR>", "Open File Explorer" },
     v = { "<cmd>Vista nvim_lsp<cr>", "Vista" },
     -- ["v"] = {":Vista<CR>", "Vista"},
-    m = { "<cmd>MinimapToggle<cr>", "Minimap" },
 
     b = { "<cmd>lua _G.ftopen('broot')<CR>", "Broot" },
     p = { "<cmd>lua _G.ftopen('python')<CR>", "Python" },
@@ -81,7 +80,6 @@ local mappings = {
     o = { "<cmd>!open '%:p:h'<CR>", "Open File Explorer" },
     v = { "<cmd>Vista nvim_lsp<cr>", "Vista" },
     -- ["v"] = {":Vista<CR>", "Vista"},
-    m = { "<cmd>MinimapToggle<cr>", "Minimap" },
     q = { "<cmd>QuickFixToggle<cr>", "Ranger" },
   },
   t = {
