@@ -42,5 +42,6 @@ if not require("lv-utils").check_lsp_client_active "texlab" then
         },
       },
     },
+    flags = O.lsp.flags,
   }
 end
