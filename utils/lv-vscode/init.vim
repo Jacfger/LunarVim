@@ -80,5 +80,5 @@ omap gc  <Plug>VSCodeCommentary
 nmap gcc <Plug>VSCodeCommentaryLine
 
 " Simulate same TAB behavior in VSCode
-nmap <Tab> :Tabnext<CR>
-nmap <S-Tab> :Tabprev<CR>
+" nmap <Tab> :Tabnext<CR>
+" nmap <S-Tab> :Tabprev<CR>

@@ -8,14 +8,14 @@ M.config = function()
   vim.g.tex_conceal = "abdmgs"
 
   -- vim.g.vimtex_compiler_method = "tectonic"
-  vim.g.vimtex_compiler_method = "tectonic"
-  vim.g.vimtex_compiler_generic =
-    { -- Tectonic does not do continuous compilation, so this may work as a custom continuous version
-      cmd = "watchexec -e tex -- tectonic --synctex --keep-logs *.tex",
-    }
-  vim.g.vimtex_compiler_tectonic = {
-    ["options"] = { "--synctex", "--keep-logs" },
-  }
+  -- vim.g.vimtex_compiler_method = "tectonic"
+  -- vim.g.vimtex_compiler_generic =
+  --   { -- Tectonic does not do continuous compilation, so this may work as a custom continuous version
+  --     cmd = "watchexec -e tex -- tectonic --synctex --keep-logs *.tex",
+  --   }
+  -- vim.g.vimtex_compiler_tectonic = {
+  --   ["options"] = { "--synctex", "--keep-logs" },
+  -- }
   vim.g.vimtex_compiler_latexmk = {
     ["options"] = {
       "-shell-escape",
@@ -32,10 +32,10 @@ M.config = function()
     { "FileType", "tex", "setlocal wrap" },
     { "FileType", "tex", "setlocal spell" },
   }
-  if vim.g.vimtex_compiler_method == "tectonic" then
-    table.insert(augroups, { "BufWritePost", "*.tex", "VimtexCompile" })
-    -- table.insert(augroups, {"CursorHold", '*.tex', 'VimtexCompile'})
-  end
+  -- if vim.g.vimtex_compiler_method == "tectonic" then
+  --   table.insert(augroups, { "BufWritePost", "*.tex", "VimtexCompile" })
+  --   -- table.insert(augroups, {"CursorHold", '*.tex', 'VimtexCompile'})
+  -- end
 
   require("lv-utils").define_augroups { _vimtex_event = augroups }
 end

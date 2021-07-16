@@ -115,7 +115,7 @@ local mappings = {
     },
     w = { "<cmd>w<CR>", "Write" },
     a = { "<cmd>wa<CR>", "Write All" },
-    c = { ":bdelete!<CR>", "Close" },
+    c = { "<cmd>BufferClose<CR>", "Close" },
     f = { "<cmd>Neoformat<cr>", "Format" }, -- TODO: switch between neoformat and lsp
     -- f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" }, -- TODO: switch between neoformat and lsp
     -- n = { "<cmd>tabnew<CR>", "New" },
@@ -201,11 +201,6 @@ local mappings = {
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     R = { "<cmd>Telescope lsp_references<cr>", "References" },
     t = { "<cmd>lua vim.lsp.buf.type_definition() <cr>", "Type Definition" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      "Workspace Symbols",
-    },
     T = { name = "Treesitter", i = { ":TSConfigInfo<cr>", "Info" } },
   },
   s = {
@@ -219,6 +214,11 @@ local mappings = {
     D = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
       "Workspace Diagnostics",
+    },
+    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    S = {
+      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+      "Workspace Symbols",
     },
     -- TODO: better (less repetitive way to do this)
     -- f = {
@@ -329,7 +329,7 @@ if O.plugin.lazygit.active then
   vim.api.nvim_set_keymap("n", "<leader>gg", ":LazyGit<CR>", { noremap = true, silent = true })
   mappings["gg"] = "LazyGit"
 end
-if O.lang.latex.active then
+if O.lang.latex.vimtex.active then
   mappings["L"] = {
     name = "Latex",
     f = { "<cmd>call vimtex#fzf#run()<cr>", "Fzf Find" },

@@ -121,14 +121,9 @@ return require("packer").startup(function(use)
     "terrortylor/nvim-comment",
     config = function()
       require("nvim_comment").setup()
-      --  -- Fix gcc keymapping -- Doesn't work with lazy load?
-      -- FIXME: why doesn't this work, which-key is so weird
-      --vim.api.nvim_set_keymap("n", "gc", "<cmd>kommentary_motion_default<cr>", { noremap = true, silent = true })
-      --vim.api.nvim_set_keymap("n", "gcc", "<cmd>kommentary_line_default<cr>", { noremap = true, silent = true })
     end,
     event = "BufRead",
     -- event = "BufWinEnter",
-    keys = { "gc", "gcc" },
   }
 
   -- Color
@@ -146,15 +141,17 @@ return require("packer").startup(function(use)
   }
 
   use {
-    "akinsho/nvim-bufferline.lua",
+    -- "akinsho/nvim-bufferline.lua",
+    -- config = function()
+    --   require("lv-bufferline").config()
+    -- end,
+    "romgrk/barbar.nvim",
     config = function()
-      require("lv-bufferline").config()
+        require 'lv-barbar'.config()
     end,
-    --         "romgrk/barbar.nvim",
-    --         config = function()
-    --             require 'lv-barbar'.config()
-    --         end,
-    -- event = "BufRead",
+    vim.api.nvim_set_keymap("n", "<TAB>", ":BufferLast<CR>", { noremap = true, silent = true }),
+    vim.api.nvim_set_keymap("n", "<S-TAB>", ":Buffer<CR>", { noremap = true, silent = true }),
+    event = "BufRead",
   }
 
   -- Extras, these do not load by default
@@ -603,16 +600,16 @@ return require("packer").startup(function(use)
       vim.api.nvim_command "runtime macros/sandwich/keymap/surround.vim"
       vim.api.nvim_command [[
         xmap is <Plug>(textobj-sandwich-query-i)
-        xmap as <Plug>(textobj-sandwich-query-a)
+        xmap as <Plug>(textobj-andwich-query-a)
         omap is <Plug>(textobj-sandwich-query-i)
         omap as <Plug>(textobj-sandwich-query-a)
     ]]
       -- Force clear the sandwhich style bindings (compat with lightspeed)
-      vim.api.nvim_del_keymap("n", "sd")
-      vim.api.nvim_del_keymap("n", "sa")
+      -- vim.api.nvim_del_keymap("n", "sd")
+      -- vim.api.nvim_del_keymap("n", "sa")
       -- vim.api.nvim_del_keymap("n", "sc")
     end,
-    event = "BufRead",
+    -- event = "BufRead",
     disable = not O.plugin.surround.active,
   }
 
