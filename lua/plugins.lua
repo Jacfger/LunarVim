@@ -147,7 +147,7 @@ return require("packer").startup(function(use)
     -- end,
     "romgrk/barbar.nvim",
     config = function()
-        require 'lv-barbar'.config()
+      require("lv-barbar").config()
     end,
     vim.api.nvim_set_keymap("n", "<TAB>", ":BufferLast<CR>", { noremap = true, silent = true }),
     vim.api.nvim_set_keymap("n", "<S-TAB>", ":Buffer<CR>", { noremap = true, silent = true }),
@@ -593,6 +593,16 @@ return require("packer").startup(function(use)
   -- Multi cursor support
   use { "mg979/vim-visual-multi", disable = not O.plugin.visual_multi.active, event = "BufRead" }
 
+  -- Argument
+  use {
+    "wellle/targets.vim",
+    config = function()
+      vim.cmd [[
+        autocmd User targets#mappings#user call targets#mappings#extend({ 'a': {'argument': [{'o': '[([<{]', 'c': '[])>}]', 's': ','}]} })
+      ]]
+    end,
+  }
+
   -- Surround plugin
   use {
     "machakann/vim-sandwich",
@@ -625,7 +635,7 @@ return require("packer").startup(function(use)
   -- Auto activating snippets
   use {
     "SirVer/ultisnips",
-    ft = 'tex',
+    ft = "tex",
   } -- TODO: port my snippets from vscode
 
   -- Send to terminal
@@ -716,7 +726,7 @@ return require("packer").startup(function(use)
 
   -- treesitter extensions
   use {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    "jacfger/nvim-treesitter-textobjects",
     disable = not O.plugin.ts_textobjects.active,
   }
   use {
@@ -724,8 +734,7 @@ return require("packer").startup(function(use)
     disable = not O.plugin.ts_textsubjects.active,
   }
   use {
-    "IndianBoy42/nvim-ts-hint-textobject",
-    branch = "patch-1",
+    "mfussenegger/nvim-ts-hint-textobject",
     config = function()
       -- vim.g.ts_hint_textobject_keys = O.treesitter.hint_labels -- Requires https://github.com/mfussenegger/nvim-ts-hint-textobject/pull/2
       require("tsht").config.hint_keys = O.treesitter.hint_labels -- Requires https://github.com/mfussenegger/nvim-ts-hint-textobject/pull/2
