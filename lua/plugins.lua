@@ -677,7 +677,7 @@ return require("packer").startup(function(use)
   -- https://github.com/tpope/vim-rsi
 
   -- Detect indentation from file
-  use { "zsugabubus/crazy8.nvim", event = "BufRead" }
+  -- use { "zsugabubus/crazy8.nvim", event = "BufRead" }
 
   -- mkdir -- Goes into a infinite loop and freezes neovim
   -- use {
