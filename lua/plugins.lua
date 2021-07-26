@@ -594,14 +594,14 @@ return require("packer").startup(function(use)
   use { "mg979/vim-visual-multi", disable = not O.plugin.visual_multi.active, event = "BufRead" }
 
   -- Argument
-  use {
-    "wellle/targets.vim",
-    config = function()
-      vim.cmd [[
-        autocmd User targets#mappings#user call targets#mappings#extend({ 'a': {'argument': [{'o': '[([<{]', 'c': '[])>}]', 's': ','}]} })
-      ]]
-    end,
-  }
+  -- use {
+  --   "wellle/targets.vim",
+  --   config = function()
+  --     vim.cmd [[
+  --       autocmd User targets#mappings#user call targets#mappings#extend({ 'a': {'argument': [{'o': '[([<{]', 'c': '[])>}]', 's': ','}]} })
+  --     ]]
+  --   end,
+  -- }
 
   -- Surround plugin
   use {

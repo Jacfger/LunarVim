@@ -83,7 +83,7 @@ O = {
       -- for other keys it only uses the first
       ["function"] = { "f", "F" },
       ["class"] = { "m", "M" },
-      -- ["parameter"] = { "a", "A" },
+      ["parameter"] = { "a", "A" },
       ["block"] = { "k", "K" },
       ["conditional"] = { "i", "I" },
       ["call"] = { "c", "C" },
@@ -360,3 +360,4 @@ O = {
 }
 
 vim.cmd('let &titleold="' .. TERMINAL .. '"')
+vim.cmd('set linebreak')
