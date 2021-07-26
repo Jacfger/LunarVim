@@ -173,3 +173,4 @@ if !exists('s:local_recipes')
 endif
 call sandwich#util#insertlocal(s:local_recipes)
 let b:sandwich_tex_marks_recipes = deepcopy(s:marks_recipes)
+let g:vimtex_subfile_start_local = 1
