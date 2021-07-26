@@ -360,4 +360,3 @@ O = {
 }
 
 vim.cmd('let &titleold="' .. TERMINAL .. '"')
-vim.cmd('set linebreak')
