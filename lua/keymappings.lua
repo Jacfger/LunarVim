@@ -92,8 +92,8 @@ map("i", "kj", "<ESC>", nore)
 -- Tab switch buffer
 -- map('n', '<TAB>', ':bnext<CR>', nore)
 -- map('n', '<S-TAB>', ':bprevious<CR>', nore)
--- map("n", "<TAB>", "<cmd>b#<cr>", nore)
--- map("n", "<S-TAB>", ":bnext<CR>", nore)
+map("n", "<TAB>", "<cmd>b#<cr>", nore)
+map("n", "<S-TAB>", ":bnext<CR>", nore)
 
 -- Preserve register on pasting in visual mode
 map("v", "p", "pgvy", nore)
@@ -133,10 +133,15 @@ map("n", "<M-)>", "f(va(", sile)
 map("n", "<M-(>", "F)va)o", sile)
 map("v", "<M-)>", "<Esc>f(vi(", sile)
 map("v", "<M-(>", "<Esc>F)vi)", sile)
-map("n", "<M-j>", "jV", sile)
-map("n", "<M-k>", "kV", sile)
-map("v", "<M-j>", "<Esc>jV", sile)
-map("v", "<M-k>", "<Esc>kV", sile)
+-- map("n", "<M-j>", "jV", sile)
+-- map("n", "<M-k>", "kV", sile)
+-- map("v", "<M-j>", "<Esc>jV", sile)
+-- map("v", "<M-k>", "<Esc>kV", sile)
+
+map("v", "<M-l>", "l", sile)
+map("n", "<M-l>", "<c-v>l", sile)
+map("v", "<M-h>", "h", sile)
+map("n", "<M-h>", "<c-v>h", sile)
 
 -- Charwise visual select line
 map("v", "v", "^og_", sile)
@@ -158,21 +163,34 @@ map("i", "<TAB>", '("\\<C-n>")', expr)
 map("i", "<c-k>", '("\\<C-p>")', expr)
 map("i", "<S-TAB>", '("\\<C-p>")', expr)
 
--- Search and Replace
--- 'c*' for word, '<leader>c*' for WORD
-map("n", ",", [[*]], nore)
-map("n", "g,", [[/<C-R>+<CR>]], nore)
--- map("n", "g,", [[/<C-R><C-W>]], nore)
-map("n", "c,", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], nore)
-map("n", "<leader>c,", [[:%s/\<<C-r><C-a>\>//g<Left><Left>]], nore)
-map("n", "c*", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], nore)
-map("n", "<leader>c*", [[:%s/\<<C-r><C-a>\>//g<Left><Left>]], nore)
-
 -- QuickFix
 -- map('n', ']q', ':cnext<CR>', nore)
 -- map('n', '[q', ':cprev<CR>', nore)
 map("n", "<C-A-j>", ":cnext<CR>", nore)
 map("n", "<C-A-k>", ":cprev<CR>", nore)
+
+-- Search and Replace -- TODO: Should these move to <leader>r?
+-- * for word or current selection
+-- + for the yank
+-- c for change
+-- / for search (new search)
+map("n", "<leader>*", [[/<C-r><C-a><CR>]], {}) -- Search the current WORD
+map("n", "c*", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], {}) -- Search and replace the current word
+map("n", "+", [[/<C-R>+<CR>]], {}) -- Search for the current yank register
+map("n", "c+", [[:%s/<C-r>+//g<Left><Left>]], {}) -- Search and replace the current yank
+map("n", "c/", [[:%s///g<Left><Left><Left>]], {}) -- Search and replace
+map("n", "<leader>r/", [[:%s/<C-R>///g<Left><Left>]], {}) -- Search and replace the last search
+-- Visual mode search
+map("v", "*", '"ay/<C-R>a<CR>gn', {}) -- Search for the current selection
+map("v", "n", "<esc>ngn", {}) -- Continue the search and keep selecting (equivalent ish to doing `gn` in normal)
+map("v", "N", "<esc>NgN", {}) -- Continue the search and keep selecting (equivalent ish to doing `gn` in normal)
+
+-- MultiSelect all search matches in file
+map("n", "<M-/>", "VggoG/", {})
+
+-- Change all according to operator
+vim.api.nvim_set_keymap("n", "<leader>c", [[<cmd>lua require("functions").change_all_operator()<CR>]], {})
+map("v", "<leader>c", [["ay:%s/<C-r>a//g<Left><Left>]], {}) -- Search and replace the current selection
 
 -- Double Escape key clears search and spelling highlights
 -- map("n", "<Plug>ClearHighLights", ":nohls | :setlocal nospell | call minimap#vim#ClearColorSearch()<ESC>", nore)
@@ -193,11 +211,13 @@ map("n", "cp", "<Plug>TransposeCharacters", {})
 map("n", "Y", "yg_", nore)
 
 -- Go Back
-map("n", "gb", "<c-o>", sile)
+map("n", "gb", "<c-o>", nore)
+map("n", "GB", "<c-i>", nore)
 
 -- comment and copy
 map("n", "gcy", "yygccp", sile)
 map("n", "gcj", "gccjgcc", sile)
+map("n", "gck", "gccjgcc", sile)
 map("v", "gyc", "ygvgc`>p", sile)
 -- map("v", "gjc", "gc", sile) -- Don't know how to implement this
 
@@ -216,11 +236,9 @@ map("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u]]", nore)
 -- Vscode style commenting in insert mode
 map("i", "<C-/>", "<C-\\><C-n><CMD>CommentToggle", nore)
 
--- Visual mode start search (like *)
-map("v", "*", '"ay/<C-R>a<cr>', nore)
-
 -- Slightly easier commands
-map("n", ";", ":", sile)
+map("n", ";", ":", {})
+map("v", ";", ":", {})
 -- map('c', ';', "<CR>", sile)
 
 -- lsp keys
@@ -235,15 +253,19 @@ map("n", "gpD", [[<cmd>lua require("lsp.functions").preview_location_at("declara
 map("n", "gpr", [[<cmd>lua require("lsp.functions").preview_location_at("references")<CR>]], sile)
 map("n", "gpi", [[<cmd>lua require("lsp.functions").preview_location_at("implementation")<CR>]], sile)
 -- Hover
+-- map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", sile)
 map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", sile)
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", sile)
+map("n", "K", "<cmd>lua vim.lsp.buf.code_action()<cr>", {})
+map("v", "K", "<esc><cmd>'<,'>lua vim.lsp.buf.range_code_action()<cr>", {})
 
 -- Format buffer -- TODO: switch between neoformat and lsp
 -- map("n", "gf", "<cmd>lua vim.lsp.buf.formatting()<cr>", nore)
--- map("n", "gf", "<cmd>Neoformat<cr>", nore)
+map("n", "gf", "<cmd>Neoformat<cr>", nore)
+map("n", "==", "<cmd>Neoformat<cr>", nore)
 -- Format a range -- TODO: can do with Neoformat?
 -- vim.api.nvim_set_keymap("n", "gm", [[<cmd>lua require("lsp.functions").format_range_operator()<CR>]], nore)
 vim.api.nvim_set_keymap("n", "gm", [[<cmd>lua require("lv-neoformat").format_range_operator()<CR>]], nore)
+vim.api.nvim_set_keymap("n", "=", [[<cmd>lua require("lv-neoformat").format_range_operator()<CR>]], nore)
 
 if O.plugin.ts_hintobjects.active then
   map("o", "m", [[:<C-U>lua require('tsht').nodes()<CR>]], sile)
@@ -255,4 +277,39 @@ if O.plugin.surround.active then
   map("x", "as", [[<Plug>(textobj-sandwich-query-a)]], sile)
   map("o", "is", [[<Plug>(textobj-sandwich-query-i)]], sile)
   map("o", "as", [[<Plug>(textobj-sandwich-query-a)]], sile)
+end
+
+-- TODO: Use more standard regex syntax
+-- map("n", "/", "/\v", nore)
+
+-- Open a new line in normal mode
+map("n", "<cr>", "o<esc>", nore)
+map("n", "<M-cr>", "O<esc>", nore)
+
+-- Quick activate macro
+map("n", "Q", "@q", nore)
+
+-- Reselect in visual line
+map("n", "gV", "V'>o'<", nore)
+map("v", "gV", "<esc>V'>o", nore)
+
+local function undo_brkpt(key)
+  map("i", key, key .. "<c-g>u", nore)
+end
+local undo_brkpts = {
+  "<CR>",
+  ",",
+  ".",
+  ";",
+  "{",
+  "}",
+  "[",
+  "]",
+  "(",
+  ")",
+  "'",
+  '"',
+}
+for _, v in ipairs(undo_brkpts) do
+  undo_brkpt(v)
 end

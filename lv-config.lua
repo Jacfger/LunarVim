@@ -9,7 +9,7 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
 O.colorscheme = "gruvbox"
-O.shell = "fish"
+O.termshell = "fish"
 O.lushmode = false
 O.hlsearch = true -- This has a bug
 
@@ -80,10 +80,12 @@ vim.g.VM_maps = nil
 vim.g.VM_maps = {
   ["Find Under"] = "<M-n>",
   ["Find Subword Under"] = "<M-n>",
-  ["Add Cursor Down"] = "<M-j>",
-  ["Add Cursor Up"] = "<M-k>",
-  ["Select Cursor Down"] = "<M-S-j>",
-  ["Select Cursor Up"] = "<M-S-k>",
+  ["Add Cursor Down"] = "<M-S-j>",
+  ["Add Cursor Up"] = "<M-S-k>",
+  ["Select Cursor Down"] = "<M-j>",
+  ["Select Cursor Up"] = "<M-k>",
+  ["Skip Region"] = "n",
+  ["Remove Region"] = "N",
   ["Visual Cursors"] = "<M-c>",
   ["Visual Add"] = "<M-a>", -- Turn visual selection into a multiple regions
   ["Visual Regex"] = "/",

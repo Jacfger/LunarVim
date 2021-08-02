@@ -57,9 +57,9 @@ local mappings = {
     O.plugin.snap.active and "<cmd>Snap find_files<cr>" or "<cmd>Telescope find_files <CR>",
     "Find File",
   },
-  h = {
-    "<Plug>ClearHighLights",
-    "No Highlight",
+  k = {
+    "<cmd>lua require('lv-kakmode').enter()<cr>",
+    "Kakoune",
   },
   w = { "<cmd>up<CR>", "Write" },
   o = {
@@ -71,6 +71,7 @@ local mappings = {
     o = { "<cmd>!open '%:p:h'<CR>", "Open File Explorer" },
     v = { "<cmd>Vista nvim_lsp<cr>", "Vista" },
     -- ["v"] = {":Vista<CR>", "Vista"},
+    m = { "<cmd>MinimapToggle<cr>", "Minimap" },
 
     b = { "<cmd>lua _G.ftopen('broot')<CR>", "Broot" },
     p = { "<cmd>lua _G.ftopen('python')<CR>", "Python" },
@@ -80,6 +81,7 @@ local mappings = {
     o = { "<cmd>!open '%:p:h'<CR>", "Open File Explorer" },
     v = { "<cmd>Vista nvim_lsp<cr>", "Vista" },
     -- ["v"] = {":Vista<CR>", "Vista"},
+    m = { "<cmd>MinimapToggle<cr>", "Minimap" },
     q = { "<cmd>QuickFixToggle<cr>", "Ranger" },
   },
   t = {
@@ -115,7 +117,7 @@ local mappings = {
     },
     w = { "<cmd>w<CR>", "Write" },
     a = { "<cmd>wa<CR>", "Write All" },
-    c = { "<cmd>BufferClose<CR>", "Close" },
+    c = { ":bdelete!<CR>", "Close" },
     f = { "<cmd>Neoformat<cr>", "Format" }, -- TODO: switch between neoformat and lsp
     -- f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" }, -- TODO: switch between neoformat and lsp
     -- n = { "<cmd>tabnew<CR>", "New" },
@@ -191,22 +193,30 @@ local mappings = {
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    A = { "<cmd>lua vim.lsp.buf.range_code_action()<cr>", "Selected Action" },
-    h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     -- TODO: What is the replacement for this?
     -- f = { "<cmd>Lspsaga lsp_finder<cr>", "LSP Finder" },
     -- p = { "<cmd>Lspsaga preview_definition<cr>", "Preview Definition" },
     q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    r = { "<cmd>lua Rename.rename()<CR>", "Rename" },
     R = { "<cmd>Telescope lsp_references<cr>", "References" },
     t = { "<cmd>lua vim.lsp.buf.type_definition() <cr>", "Type Definition" },
+    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    S = {
+      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+      "Workspace Symbols",
+    },
     T = { name = "Treesitter", i = { ":TSConfigInfo<cr>", "Info" } },
   },
   s = {
     name = "Search",
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    S = {
+      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+      "Workspace Symbols",
+    },
     d = {
       "<cmd>Telescope lsp_document_diagnostics<cr>",
       "Document Diagnostics",
@@ -214,11 +224,6 @@ local mappings = {
     D = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
       "Workspace Diagnostics",
-    },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      "Workspace Symbols",
     },
     -- TODO: better (less repetitive way to do this)
     -- f = {
@@ -329,13 +334,12 @@ if O.plugin.lazygit.active then
   vim.api.nvim_set_keymap("n", "<leader>gg", ":LazyGit<CR>", { noremap = true, silent = true })
   mappings["gg"] = "LazyGit"
 end
-if O.lang.latex.vimtex.active then
+if O.lang.latex.active then
   mappings["L"] = {
     name = "Latex",
     f = { "<cmd>call vimtex#fzf#run()<cr>", "Fzf Find" },
     i = { "<cmd>VimtexInfo<cr>", "Project Information" },
-    s = { "<cmd>VimtexToggleMain<cr>", "Toggle subfile or main file"},
-    S = { "<cmd>VimtexStop<cr>", "Stop Project Compilation" },
+    s = { "<cmd>VimtexStop<cr>", "Stop Project Compilation" },
     t = { "<cmd>VimtexTocToggle<cr>", "Toggle Table Of Content" },
     v = { "<cmd>VimtexView<cr>", "View PDF" },
     c = { "<cmd>VimtexCompile<cr>", "Compile Project Latex" },

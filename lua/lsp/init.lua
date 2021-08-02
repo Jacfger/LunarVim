@@ -79,25 +79,20 @@ end
 lsp_config.diag_prev = function()
   vim.lsp.diagnostic.goto_prev { popup_opts = { border = O.lsp.border } }
 end
+-- TODO: figure out how to floating window the code actions
+-- vim.lsp.handlers["textDocument/codeAction"] = vim.lsp.with(vim.lsp.handlers.codeAction, {
+--   border = O.lsp.border,
+-- })
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = O.lsp.border,
 })
-
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = O.lsp.border,
 })
 
-local lsp_sign_opt = O.plugin.lsp_signature
-lsp_sign_opt.bind = true
-lsp_sign_opt.handler_opts = {
-  border = O.lsp.border, -- double, single, shadow, none
-}
-lsp_sign_opt.hint_scheme = "String"
-lsp_sign_opt.hi_parameter = "Search"
 if O.document_highlight then
   function lsp_config.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)
-    require("lsp_signature").on_attach(lsp_sign_opt)
   end
 end
 
@@ -111,6 +106,32 @@ require("lv-utils").define_augroups {
 if O.lang.emmet.active then
   require "lsp.emmet-ls"
 end
+
+_G.Rename = {
+  rename = function()
+    local opts = {
+      relative = "cursor",
+      row = 0,
+      col = 0,
+      width = 30,
+      height = 1,
+      style = "minimal",
+      border = "single",
+    }
+    local cword = vim.fn.expand "<cword>"
+    local buf = vim.api.nvim_create_buf(false, true)
+    local win = vim.api.nvim_open_win(buf, true, opts)
+    local dorename = string.format("<cmd>lua Rename.dorename(%d)<CR>", win)
+
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, { cword })
+    vim.api.nvim_buf_set_keymap(buf, "i", "<CR>", dorename, { silent = true })
+  end,
+  dorename = function()
+    local new_name = vim.trim(vim.fn.getline ".")
+    vim.api.nvim_win_close(win, true)
+    vim.lsp.buf.rename(new_name)
+  end,
+}
 
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches

@@ -76,7 +76,7 @@ return require("packer").startup(function(use)
     config = function()
       require("lv-compe").config()
     end,
-    event = "InsertEnter",
+    -- event = "InsertEnter",
   }
 
   -- VSCode style snippets
@@ -112,7 +112,8 @@ return require("packer").startup(function(use)
     config = function()
       require "lv-autopairs"
     end,
-    after = { "nvim-compe", "telescope.nvim" },
+    -- after = { "nvim-compe", "telescope.nvim" },
+    after = "telescope.nvim",
   }
 
   -- Comments
@@ -568,6 +569,25 @@ return require("packer").startup(function(use)
       lsp_sign_opt.hint_scheme = "String"
       lsp_sign_opt.hi_parameter = "Search"
       require("lsp_signature").on_attach(lsp_sign_opt)
+      require("lsp_signature").setup(lsp_sign_opt)
+    end,
+  }
+
+  use { "RishabhRD/popfix" }
+  use {
+    "RishabhRD/nvim-lsputils",
+    config = function()
+      vim.lsp.handlers["textDocument/codeAction"] = require("lsputil.codeAction").code_action_handler
+      vim.cmd [[
+        au FileType lsputil_codeaction_list nmap <buffer> K <CR>
+      ]]
+      -- vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+      -- vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+      -- vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+      -- vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+      -- vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+      -- vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+      -- vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
     end,
   }
 
@@ -615,10 +635,12 @@ return require("packer").startup(function(use)
         omap is <Plug>(textobj-sandwich-query-i)
         omap as <Plug>(textobj-sandwich-query-a)
     ]]
-      -- Force clear the sandwhich style bindings (compat with lightspeed)
+      -- Force clear the sandwhich style bindings (compat with lightspeed) -- FIXME: doesn't work
       -- vim.api.nvim_del_keymap("n", "sd")
       -- vim.api.nvim_del_keymap("n", "sa")
-      -- vim.api.nvim_del_keymap("n", "sc")
+      -- vim.api.nvim_del_keymap("n", "sdb")
+      -- vim.api.nvim_del_keymap("n", "sab")
+      -- vim.api.nvim_del_keymap("n", "sr")
     end,
     -- event = "BufRead",
     disable = not O.plugin.surround.active,
@@ -655,8 +677,8 @@ return require("packer").startup(function(use)
   use {
     "kassio/neoterm",
     config = "require('lv-neoterm')",
-    -- cmd = { "T", "Tmap", "Tnew", "Ttoggle", "Topen" },
-    -- keys = { "gx", "gxx" },
+    cmd = { "T", "Tmap", "Tnew", "Ttoggle", "Topen" },
+    keys = { "gx", "gxx" },
   }
 
   -- Repeat plugin commands
@@ -727,6 +749,7 @@ return require("packer").startup(function(use)
 
   -- treesitter extensions
   use {
+    -- "nvim-treesitter/nvim-treesitter-textobjects",
     "jacfger/nvim-treesitter-textobjects",
     disable = not O.plugin.ts_textobjects.active,
   }
@@ -836,8 +859,56 @@ return require("packer").startup(function(use)
     end,
   }
 
-  -- use { "Iron-E/nvim-libmodal" }
+  use {
+    "AndrewRadev/splitjoin.vim",
+    config = function()
+      vim.api.nvim_set_keymap("n", "gj", "gJ", {})
+      vim.api.nvim_set_keymap("n", "gk", "gS", {})
+    end,
+  }
+
+  use { "Iron-E/nvim-libmodal" }
   -- use { "Iron-E/nvim-tabmode", after = "nvim-libmodal" }
+
+  -- use { "~/code/glow.nvim", run = ":GlowInstall" }
+
+  use {
+    "abecodes/tabout.nvim",
+    config = function()
+      local pairs = {
+        "''",
+        '""',
+        "``",
+        "()",
+        "{}",
+        "[]",
+      }
+      require("tabout").setup {
+        tabkey = "", -- key to trigger tabout
+        backwards_tabkey = "", -- key to trigger tabout
+        act_as_tab = true, -- shift content if tab out is not possible
+        completion = true, -- if the tabkey is used in a completion pum
+        tabouts = {
+          { open = "'", close = "'" },
+          { open = '"', close = '"' },
+          { open = "`", close = "`" },
+          { open = "(", close = ")" },
+          { open = "[", close = "]" },
+          { open = "{", close = "}" },
+        },
+        ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+        exclude = {}, -- tabout will ignore these filetypes
+      }
+    end,
+    after = { "nvim-compe" }, -- if a completion plugin is using tabs load it before
+  }
+
+  use {
+    "gelguy/wilder.nvim",
+    config = function()
+      require("lv-wilder").config()
+    end,
+  }
 
   if #O.custom_plugins > 0 then
     use(O.custom_plugins)
