@@ -23,19 +23,20 @@ M.config = function()
   vim.g.neoformat_basic_format_trim = 1 ]]
 
   -- autoformat
-  -- if O.format_on_save then
-  --   require("lv-utils").define_augroups {
-  --     autoformat = {
-  --       {
-  --         "BufWritePre",
-  --         "*",
-  --         -- FIXME: cannot undojoin after undo
-  --         -- [[undojoin | Neoformat]],
-  --         [[try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry]],
-  --       },
-  --     },
-  --   }
-  -- end
+  if O.format_on_save then
+    require("lv-utils").define_augroups {
+      autoformat = {
+        {
+          "BufWritePre",
+          "*",
+          -- FIXME: cannot undojoin after undo
+          -- [[undojoin | Neoformat]],
+          -- [[try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry]],
+          [[Neoformat]],
+        },
+      },
+    }
+  end
 end
 
 M.format_range_operator = function()
