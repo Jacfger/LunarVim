@@ -67,6 +67,7 @@ opt.spell = O.spell
 opt.spelllang = O.spelllang
 opt.scrolloff = O.scrolloff -- Scrolloffset to block the cursor from reaching the top/bottom
 opt.breakindent = true -- Apply indentation for wrapped lines
+opt.breakindentopt = 'sbr' -- Apply indentation for wrapped lines
 opt.pastetoggle = "<F3>" -- Enter Paste Mode with
 opt.spelllang = "en_us" -- Spell check language
 opt.foldlevelstart = 99 -- Don't fold on startup
@@ -75,4 +76,7 @@ opt.foldmethod = "indent" -- Set default fold method as indent, although will be
 opt.linebreak = true
 opt.lazyredraw = true -- When running macros and regexes on a large file, lazy redraw tells neovim/vim not to draw the screen, which greatly speeds it up, upto 6-7x faster
 opt.autowriteall = true -- auto write on focus lost
+opt.sidescroll = 1
+opt.sidescrolloff = 10
+opt.listchars = { extends = '>', precedes = '<', trail = '_'}
 -- LuaFormatter on
