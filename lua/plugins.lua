@@ -766,10 +766,8 @@ return require("packer").startup(function(use)
     config = function()
       require("tsht").config.hint_keys = O.treesitter.hint_labels -- Requires https://github.com/mfussenegger/nvim-ts-hint-textobject/pull/2
 
-      if O.plugin.ts_hintobjects.active then
-        vim.api.nvim_set_keymap("o", "m", [[:<C-U>lua require('tsht').nodes()<CR>]], { silent = true })
-        vim.api.nvim_set_keymap("v", "m", [[:lua require('tsht').nodes()<CR>]], { silent = true })
-      end
+      silemap("o", "m", [[:<C-U>lua require('tsht').nodes()<CR>]])
+      silemap("v", "m", [[:lua require('tsht').nodes()<CR>]])
     end,
     event = "BufRead",
     disable = not O.plugin.ts_hintobjects.active,

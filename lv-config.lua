@@ -21,7 +21,6 @@ local disable_plugins = {
   "fzf",
   "tabnine",
   "tmux_navigator",
-  "hop",
   "lazygit",
   "anywise_reg",
   "quickscope",
