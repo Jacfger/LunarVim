@@ -155,12 +155,10 @@ return require("packer").startup(function(use)
     event = "BufRead",
   }
 
-  -- Extras, these do not load by default
-
   -- Better motions
   use {
     "phaazon/hop.nvim",
-    event = "BufRead",
+    cmd = { "HopChar2", "HopChar1", "HopWord", "HopLine", "HopPattern" },
     config = function()
       require("lv-hop").config()
     end,
