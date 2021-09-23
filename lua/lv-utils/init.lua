@@ -33,7 +33,6 @@ function M.reload_lv_config()
   -- FIXME: Reloading config breaks things
   vim.cmd "source ~/.config/nvim/lv-config.lua"
   vim.cmd "source ~/.config/nvim/lua/plugins.lua"
-  vim.cmd "source ~/.config/nvim/lua/lv-neoformat/init.lua"
   vim.cmd ":PackerCompile"
   vim.cmd ":PackerInstall"
 end

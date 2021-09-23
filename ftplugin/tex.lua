@@ -34,9 +34,10 @@ local conf = {
 }
 vim.opt_local.wrap = true
 vim.opt_local.spell = true
+vim.opt.number = false
+vim.opt.relativenumber = false
 
 vim.cmd "inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u"
-
 local map = vim.api.nvim_buf_set_keymap
 require("keymappings").wrapjk()
 map(0, "v", "<C-b>", "Smb", { silent = true })

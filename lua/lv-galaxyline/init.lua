@@ -256,7 +256,7 @@ ins(gls.right, {
   },
 })
 
-table.insert(gls.right, {
+ins(gls.right, {
   TreesitterIcon = {
     provider = function()
       if next(vim.treesitter.highlighter.active) ~= nil then

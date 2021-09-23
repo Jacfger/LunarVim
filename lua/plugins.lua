@@ -99,15 +99,6 @@ return packer.startup(function(use)
     -- event = "InsertEnter",
     disable = not O.plugin.cmp,
   }
-
-  -- VSCode style snippets
-  use { "hrsh7th/vim-vsnip", event = "InsertEnter" }
-  -- use {"hrsh7th/vim-vsnip-integ", event = "InsertEnter", after = "vim-vsnip"}
-  use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
-
-  -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-
   use {
     "onsails/lspkind-nvim",
     config = function()
@@ -380,7 +371,6 @@ return packer.startup(function(use)
   -- Debugging
   use {
     "mfussenegger/nvim-dap",
-    -- TODO: load on command
     config = function()
       require "lv-dap"
     end,
@@ -536,12 +526,6 @@ return packer.startup(function(use)
     disable = not O.plugin.gist,
     requires = "mattn/webapi-vim",
   }
-  -- Lush Create Color Schemes
-  use {
-    "rktjmp/lush.nvim",
-    -- cmd = {"LushRunQuickstart", "LushRunTutorial", "Lushify"},
-    disable = not O.plugin.lush.active,
-  }
   -- HTML preview
   use {
     "turbio/bracey.vim",
@@ -559,24 +543,7 @@ return packer.startup(function(use)
 
   -- LANGUAGE SPECIFIC GOES HERE
 
-  -- Null ls, for hooking local plugins into lsp
-  -- use {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   ft = {
-  --     "javascript",
-  --     "javascriptreact",
-  --     "javascript.jsx",
-  --     "typescript",
-  --     "typescriptreact",
-  --     "typescript.tsx",
-  --   },
-  --   config = function()
-  --     require("null-ls").setup()
-  --   end,
-  -- }
-
   -- Latex
-  -- TODO what filetypes should this be active for?
   use {
     "lervag/vimtex",
     ft = "tex",
