@@ -227,7 +227,7 @@ local mappings = {
     --   "Find File (+Hidden)",
     -- },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-    -- m = {"<cmd>Telescope marks<cr>", "Marks"},
+   -- m = {"<cmd>Telescope marks<cr>", "Marks"},
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     R = {
       O.plugin.snap.active and "<cmd>Snap oldfiles<cr>" or "<cmd>Telescope oldfiles<cr>",
@@ -330,7 +330,7 @@ end
 if O.plugin.lazygit.active then
   mappings["gg"] = { "<cmd>LazyGit<CR>", "LazyGit" }
 end
-if O.lang.latex.active then
+if O.lang.latex.vimtex.active then
   mappings["L"] = {
     name = "Latex",
     f = { "<cmd>call vimtex#fzf#run()<cr>", "Fzf Find" },

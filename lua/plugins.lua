@@ -142,10 +142,6 @@ return require("packer").startup(function(use)
   }
 
   use {
-    -- "akinsho/nvim-bufferline.lua",
-    -- config = function()
-    --   require("lv-bufferline").config()
-    -- end,
     "romgrk/barbar.nvim",
     config = function()
       require("lv-barbar").config()

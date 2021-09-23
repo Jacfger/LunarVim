@@ -20,12 +20,12 @@ if not require("lv-utils").check_lsp_client_active "texlab" then
       texlab = {
         auxDirectory = O.lang.latex.aux_directory,
         bibtexFormatter = O.lang.latex.bibtex_formatter,
-        build = {
-          args = O.lang.latex.build.args,
-          executable = O.lang.latex.build.executable,
-          forwardSearchAfter = O.lang.latex.build.forward_search_after,
-          onSave = O.lang.latex.build.on_save,
-        },
+        -- build = {
+        --   args = O.lang.latex.build.args,
+        --   executable = O.lang.latex.build.executable,
+        --   forwardSearchAfter = O.lang.latex.build.forward_search_after,
+        --   onSave = O.lang.latex.build.on_save,
+        -- },
         chktex = {
           onEdit = O.lang.latex.chktex.on_edit,
           onOpenAndSave = O.lang.latex.chktex.on_open_and_save,

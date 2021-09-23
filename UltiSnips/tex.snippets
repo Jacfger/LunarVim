@@ -12,6 +12,115 @@ def env(name):
 
 endglobal
 
+snippet hwt; "Homework template" iA
+\documentclass[12pt]{article}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+\usepackage{listings}
+\lstset{language=C++,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{blue}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	commentstyle=\color{green}\ttfamily,
+	morecomment=[l][\color{magenta}]{\#}
+}
+
+\usepackage{bm}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{mathtools}
+
+\usepackage{blkarray}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\setlist{nolistsep}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+% \usepackage[noend]{algpseudocode}
+\graphicspath{ {./images/} }
+\usepackage[super]{nth}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\y}{\bm{y}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\\#1\let\\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}p{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}p{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}p{#1}}
+
+\algdef{SE}[SUBALG]{Indent}{EndIndent}{}{\algorithmicend\ }%
+\algtext*{Indent}
+\algtext*{EndIndent}
+
+
+\pagestyle{fancy}
+% \fancyhf{}
+\rhead{SID: 20535312}
+\chead{Name: Nai Chit FUNG}
+\lhead{${1:CourseCode} - ${3:ShortTitle}}
+\cfoot{\thepage}
+\title{
+{\LARGE $1 - ${2:CourseName}} \\\\
+\textbf{\LARGE ${4:LongTitle}} \\\\
+% \textbf{}
+}
+\author{ 
+\begin{tabular}{R{0.3\textwidth}L{0.4\textwidth}}
+\normalsize\textbf{Name:} & \normalsize Nai Chit FUNG \\\\
+\normalsize\textbf{Student ID:} & \normalsize20535312 \\\\
+\end{tabular}
+}
+
+\date{}
+
+\begin{document}
+\maketitle\thispagestyle{fancy}
+$0
+\end{document}
+
+endsnippet
+
+snippet rdt; "Reading note" iA
+\documentclass[12pt]{article}
+
+\begin{document}
+$0
+\end{document}
+endsnippet
+
+priority 100
+snippet rds; "Reading section" iA
+\section{$1}
+$0
+\subsection{Vocabulary}
+endsnippet
+
 snippet mnt; "Main notes" iA
 \documentclass[12pt]{article}
 \usepackage[usenames,svgnames,dvipsnames]{xcolor}
@@ -230,14 +339,16 @@ $0
 endsnippet
 
 snippet snt; "Subfile notes" iA
-\documentclass[../$1]{subfiles}
+\documentclass[../main.tex]{subfiles}
 
 
 \begin{document}
 
-\section{`date +%F`}
-\subsection{${2:Topic}}
+\section*{`date +%F`}
+\addcontentsline{toc}{section}{`date +%F`}
+\section{${2:Topic}}
 $0
+\subsection{Thoughts}
 \end{document} 
 endsnippet
 
@@ -295,6 +406,12 @@ snippet pac "Package" b
 endsnippet
 
 context "math()"
+priority 100
+snippet '([a-zA-Z]+)bf;' "Math Bold text" riA
+\mathbf{`!p snip.rv=match.group(1)`}
+endsnippet
+
+context "math()"
 snippet => "implies" Ai
 \implies
 endsnippet
@@ -330,20 +447,22 @@ snippet ali "Align" bA
 .\end{align*}
 endsnippet
 
-
 context "math()"
-snippet // "Fraction" iA
-\\frac{$1}{$2}$0
+priority 10000
+snippet part "d/dx" wA
+\frac{\partial ${1:V}}{\partial ${2:x}} $0
 endsnippet
 
-context "math()"
-snippet / "Fraction" i
-\\frac{${VISUAL}}{$1}$0
-endsnippet
-
+priority 1000
 context "math()"
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+priority 0
+context "math()"
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
 endsnippet
 
 priority 1000
@@ -494,10 +613,6 @@ snippet prod "product" w
 \prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
-context "math()"
-snippet part "d/dx" w
-\frac{\partial ${1:V}}{\partial ${2:x}} $0
-endsnippet
 
 context "math()"
 snippet sq "\sqrt{}" iA
@@ -770,22 +885,22 @@ endsnippet
 
 context "math()"
 snippet OO "emptyset" iA
-\mathbb{O}  
+\mathbb{O}
 endsnippet
 
 context "math()"
 snippet RR "real" iA
-\mathbb{R}  
+\mathbb{R}
 endsnippet
 
 context "math()"
 snippet QQ "Q" iA
-\mathbb{Q}  
+\mathbb{Q}
 endsnippet
 
 context "math()"
 snippet ZZ "Z" iA
-\mathbb{Z}  
+\mathbb{Z}
 endsnippet
 
 context "math()"

@@ -19,6 +19,8 @@ M.config = function()
   vim.g.vimtex_compiler_latexmk = {
     ["options"] = {
       "-shell-escape",
+      "-pdf",
+      "-bibtex",
       "-verbose",
       "-file-line-error",
       "-synctex=1",

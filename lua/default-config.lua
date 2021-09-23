@@ -29,7 +29,7 @@ local diagnostics = {
 local lsp_border = "single"
 
 O = {
-  format_on_save = true,
+  -- format_on_save = true,
   auto_close_tree = 0,
   fold_columns = "0",
   auto_complete = true,
@@ -290,13 +290,13 @@ O = {
       filetypes = { "tex", "bib" },
       aux_directory = ".",
       bibtex_formatter = "texlab",
-      build = {
-        -- TODO: Use tectonic here
-        args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-        executable = "latexmk",
-        forward_search_after = false,
-        on_save = false,
-      },
+      -- build = {
+      --   -- TODO: Use tectonic here
+      --   args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+      --   executable = "latexmk",
+      --   forward_search_after = false,
+      --   on_save = false,
+      -- },
       chktex = { on_edit = false, on_open_and_save = false },
       diagnostics_delay = vim.opt.updatetime,
       formatter_line_length = 80,
