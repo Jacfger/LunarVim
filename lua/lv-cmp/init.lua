@@ -4,13 +4,13 @@ local iconmap = {
   path = "   [Path]",
   nvim_lsp = "   [LSP]",
   -- luasnip = "   [Snippet]",
-  luasnip = "",
+  -- luasnip = "",
   nvim_lua = "[Lua]",
   latex_symbols = "[Latex]",
   calc = "   [Calc]",
 }
 local default_sources = {
-  { name = "luasnip" },
+  -- { name = "luasnip" },
   { name = "nvim_lsp" },
   { name = "buffer" },
   { name = "path" },
@@ -26,7 +26,7 @@ function M.add_sources(list)
 end
 function M.setup()
   local cmp = require "cmp"
-  local luasnip = require "luasnip"
+  -- local luasnip = require "luasnip"
 
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -37,11 +37,11 @@ function M.setup()
   end
 
   cmp.setup {
-    snippet = {
-      expand = function(args)
-        require("luasnip").lsp_expand(args.body)
-      end,
-    },
+    -- snippet = {
+    --   expand = function(args)
+    --     require("luasnip").lsp_expand(args.body)
+    --   end,
+    -- },
     completion = {
       completeopt = "menu,menuone,noinsert",
       -- autocomplete = false,
@@ -78,8 +78,8 @@ function M.setup()
       ["<tab>"] = cmp.mapping(function(fallback)
         if vim.fn.pumvisible() == 1 then
           vim.api.nvim_feedkeys(t "<C-n>", "n", false)
-        elseif luasnip.expand_or_jumpable() then
-          vim.api.nvim_feedkeys(t "<Plug>luasnip-expand-or-jump", "", false)
+          -- elseif luasnip.expand_or_jumpable() then
+          --   vim.api.nvim_feedkeys(t "<Plug>luasnip-expand-or-jump", "", false)
         elseif check_back_space() then
           vim.api.nvim_feedkeys(t "<tab>", "n", false)
         else
@@ -92,8 +92,8 @@ function M.setup()
       ["<S-tab>"] = cmp.mapping(function(fallback)
         if vim.fn.pumvisible() == 1 then
           vim.api.nvim_feedkeys(t "<C-p>", "n", false)
-        elseif luasnip.jumpable(-1) then
-          vim.api.nvim_feedkeys(t "<Plug>luasnip-jump-prev", "", false)
+          -- elseif luasnip.jumpable(-1) then
+          --   vim.api.nvim_feedkeys(t "<Plug>luasnip-jump-prev", "", false)
         else
           fallback()
         end

@@ -1,6 +1,6 @@
 -- TODO: inline these variables
 local conf = {
-  conceal = 2,
+  conceal = 0,
   theme = O.lighttheme,
   fontsize = O.bigfontsize,
   filetypes = { "tex", "bib" },
@@ -78,7 +78,7 @@ require("lsp.config").lspconfig "texlab" {
 
 require("lv-cmp").sources {
   sources = {
-    { name = "luasnip" },
+    -- { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "buffer" },
   },
@@ -90,8 +90,8 @@ require("cmp").setup.buffer {
   -- },
 }
 
-require("luasnip").snippets.tex = require("lv-luasnips.tex").snips
-require("luasnip").autosnippets.tex = require("lv-luasnips.tex").auto
+-- require("luasnip").snippets.tex = require("lv-luasnips.tex").snips
+-- require("luasnip").autosnippets.tex = require("lv-luasnips.tex").auto
 
 local sandwichtex = require "lv-sandwich.tex"
 require("lv-sandwich").add_local_recipes(sandwichtex.recipes)
@@ -106,8 +106,8 @@ mappings.localleader {
   s = { cmd "VimtexStop", "Stop Project Compilation" },
   t = { cmd "VimtexTocToggle", "Toggle Table Of Content" },
   v = { cmd "VimtexView", "View PDF" },
-  c = { "<leader>Tc", "Toggle Conceal" },
-  b = { cmd "VimtexCompile", "Compile" },
+  x = { "<leader>Tc", "Toggle Conceal" },
+  c = { cmd "VimtexCompile", "Compile" },
   o = { cmd "VimtexCompileOutput", "Compile Output" },
   e = { cmd "VimtexErrors", "Errors" },
   l = { cmd "TexlabBuild", "Texlab Build" },

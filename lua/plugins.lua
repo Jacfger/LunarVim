@@ -112,6 +112,9 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-calc", requires = "hrsh7th/nvim-cmp", disable = not O.plugin.cmp }
   use { "hrsh7th/cmp-nvim-lua", requires = "hrsh7th/nvim-cmp", disable = not O.plugin.cmp }
   use { "f3fora/cmp-spell", requires = "hrsh7th/nvim-cmp", disable = not O.plugin.cmp }
+  use {
+    "SirVer/ultisnips",
+  }
   -- Tabout
   use {
     "abecodes/tabout.nvim",
@@ -128,15 +131,22 @@ return packer.startup(function(use)
     config = function()
       require("lv-luasnips").setup()
     end,
-    disable = not O.plugin.cmp or not O.plugin.luasnip,
+    -- disable = not O.plugin.cmp or not O.plugin.luasnip,
+    disable = true,
   }
   use {
     "saadparwaiz1/cmp_luasnip",
     requires = { "L3MON4D3/LuaSnip", "hrsh7th/nvim-cmp" },
-    disable = not O.plugin.cmp or not O.plugin.luasnip,
+    -- disable = not O.plugin.cmp or not O.plugin.luasnip,
+    disable = true,
   }
+
   -- Common set of snippets
-  use { "rafamadriz/friendly-snippets", disable = not O.plugin.luasnip }
+  use {
+    "rafamadriz/friendly-snippets",
+    -- disable = not O.plugin.luasnip,
+    disable = true,
+  }
   -- Tabnine
   use {
     "tzachar/cmp-tabnine",
