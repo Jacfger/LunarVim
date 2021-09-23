@@ -1001,6 +1001,7 @@ function M.setup()
   -- Tab management keybindings
   wk.register({
     t = { cmd "tabnext", "Next" },
+    ["<C-t>"] = { cmd "tabnext", "Next" },
     N = { cmd "tabnew", "New" },
     q = { cmd "tabclose", "Close" },
     ["<tab>"] = { cmd "tabnext", "Next" },
