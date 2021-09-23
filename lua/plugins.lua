@@ -721,7 +721,7 @@ return packer.startup(function(use)
     run = ":UpdateRemotePlugins",
     -- python3.9 -m pip install cairosvg pnglatex jupyter_client ipython ueberzug pillow
     cmd = "MagmaStart", -- see lv-terms
-    disable = not O.plugin.magma,
+    -- disable = not O.plugin.magma,
   }
   -- Better neovim terminal
   use {

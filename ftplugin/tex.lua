@@ -34,8 +34,8 @@ local conf = {
 }
 vim.opt_local.wrap = true
 vim.opt_local.spell = true
-vim.opt.number = false
-vim.opt.relativenumber = false
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 vim.cmd "inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u"
 local map = vim.api.nvim_buf_set_keymap

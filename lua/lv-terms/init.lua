@@ -130,7 +130,7 @@ function M.neoterm()
   vim.g.neoterm_autoscroll = 1
   vim.g.neoterm_shell = O.termshell
   vim.g.neoterm_bracketed_paste = 1
-  vim.g.neoterm_repl_python = { "ipython" }
+  vim.g.neoterm_repl_python = { "conda activate pytorch2", "ipython" }
   vim.g.neoterm_repl_lua = { "croissant" }
   --vim.g.neoterm_repl_python = "['conda activate venv', 'clear', 'ipython']"
 end
