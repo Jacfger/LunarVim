@@ -4,28 +4,32 @@ local actions = require "telescope.actions"
 local functions = require "lv-telescope.functions"
 -- Global remapping
 ------------------------------
-local rg = {
-  "rg",
-  "--color=never",
-  "--no-config",
-  "--no-heading",
-  "--with-filename",
-  "--line-number",
-  "--column",
-  "--smart-case",
-  "--ignore",
-  "--hidden",
+TelescopeMapArgs = TelescopeMapArgs or {}
+local map_ = vim.api.nvim_set_keymap
+local map_b = vim.api.nvim_buf_set_keymap
+local map_options = {
+  noremap = true,
+  silent = true,
 }
-local fd = {}
-for i, v in ipairs(rg) do
-  fd[i] = v
-end
-table.insert(fd, "--files")
+local map_tele = function(mode, key, f, options, buffer)
+  local map_key = vim.api.nvim_replace_termcodes(key .. f, true, true, true)
 
-require("telescope").setup {
+  TelescopeMapArgs[map_key] = options or {}
+
+  local rhs = string.format("<cmd>lua require('telescope')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
+
+  if not buffer then
+    map_(mode, key, rhs, map_options)
+  else
+    map_b(0, mode, key, rhs, map_options)
+  end
+end
+
+local telescope = require "telescope"
+telescope.setup {
   defaults = {
-    find_command = fd,
-    vimgrep_arguments = rg,
+    find_command = functions.commands.fd,
+    vimgrep_arguments = functions.commands.rg,
     prompt_prefix = " ",
     selection_caret = " ",
     entry_prefix = "  ",
@@ -40,9 +44,10 @@ require("telescope").setup {
       horizontal = { mirror = false },
       vertical = { mirror = false },
     },
-    file_sorter = sorters.get_fzy_sorter,
+    -- file_sorter = sorters.get_fzy_sorter,
+    -- generic_sorter = sorters.get_fzy_sorter,
+    -- generic_sorter = sorters.get_generic_fuzzy_sorter,
     file_ignore_patterns = {},
-    generic_sorter = sorters.get_generic_fuzzy_sorter,
     path_display = { "shorten_path" },
     winblend = 0,
     border = {},
@@ -58,6 +63,7 @@ require("telescope").setup {
     buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
     mappings = {
       i = {
+        ["<C-h>"] = telescope.extensions.hop.hop,
         ["<C-x>"] = actions.delete_buffer,
         ["<C-s>"] = actions.select_horizontal,
         ["<C-v>"] = actions.select_vertical,
@@ -95,32 +101,27 @@ require("telescope").setup {
       override_generic_sorter = false,
       override_file_sorter = true,
     },
+    fzf = {
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = false, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+      -- the default case_mode is "smart_case"
+    },
     "cmake",
+    extensions = {
+      hop = {
+        keys = { "a", "s", "d", "f", "h", "j", "k", "l" },
+      },
+    },
   },
 }
 
-require("telescope").setup {}
+-- telescope.setup {}
 
--- require'telescope'.load_extension('fzy_native')
--- require'telescope'.load_extension('project')
-
-TelescopeMapArgs = TelescopeMapArgs or {}
-
-local map_tele = function(mode, key, f, options, buffer)
-  local map_key = vim.api.nvim_replace_termcodes(key .. f, true, true, true)
-
-  TelescopeMapArgs[map_key] = options or {}
-
-  local rhs = string.format("<cmd>lua require('plugin.telescope')['%s'](TelescopeMapArgs['%s'])<CR>", f, map_key)
-
-  local map_options = {
-    noremap = true,
-    silent = true,
-  }
-
-  if not buffer then
-    vim.api.nvim_set_keymap(mode, key, rhs, map_options)
-  else
-    vim.api.nvim_buf_set_keymap(0, mode, key, rhs, map_options)
-  end
-end
+_G.telescopes = functions
+-- telescope.load_extension('fzy_native')
+telescope.load_extension "fzf"
+telescope.load_extension "hop"
+-- telescope.load_extension "frecency"
+-- telescope.load_extension('project')

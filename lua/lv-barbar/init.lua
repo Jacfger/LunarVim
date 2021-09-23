@@ -1,9 +1,10 @@
 local M = {}
 
 M.config = function()
-  noremap("n", "<TAB>", ":BufferNext<CR>")
-  noremap("n", "<S-TAB>", ":BufferPrevious<CR>")
-  noremap("n", "<S-x>", ":BufferClose<CR>")
+  local nore = require("keymappings").nore
+  nore("n", "<TAB>", ":BufferNext<CR>")
+  nore("n", "<S-TAB>", ":BufferPrevious<CR>")
+  nore("n", "<S-x>", ":BufferClose<CR>")
 end
 
 return M
