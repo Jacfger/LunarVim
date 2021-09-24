@@ -315,10 +315,8 @@ function M.setup()
   map("x", ">", ">gv", nore)
 
   -- I hate escape
-  if not O.plugin.better_escape then
-    map("i", "jk", "<ESC>", sile)
-    map("i", "kj", "<ESC>", sile)
-  end
+  map("i", "jk", "<ESC>", sile)
+  map("i", "kj", "<ESC>", sile)
 
   -- Tab switch buffer
   map("n", "<tab>", cmd "b#", nore)
