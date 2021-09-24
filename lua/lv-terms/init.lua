@@ -114,10 +114,10 @@ function M.fterm()
       { "FileType", "FTerm", "nnoremap <silent> <buffer> q <CMD>q<CR>" },
       -- { "FileType", "FTerm", "tnoremap <silent> <buffer> <esc> <nop>" },
       -- { "FileType", "FTerm", "tnoremap <silent> <buffer> <M-e> <C-\\><C-n>" },
-      { "FileType", "FTerm", "tnoremap <silent> <buffer> <C-h> <C-\\><C-n><CMD>q<CR>" },
-      { "FileType", "FTerm", "tnoremap <silent> <buffer> <C-j> <C-\\><C-n><CMD>q<CR>" },
-      { "FileType", "FTerm", "tnoremap <silent> <buffer> <C-k> <C-\\><C-n><CMD>q<CR>" },
-      { "FileType", "FTerm", "tnoremap <silent> <buffer> <C-l> <C-\\><C-n><CMD>q<CR>" },
+      { "FileType", "FTerm", "tnoremap <buffer> <C-h> <C-\\><C-n><CMD>q<CR>" },
+      { "FileType", "FTerm", "tnoremap <buffer> <C-j> <C-\\><C-n><CMD>q<CR>" },
+      { "FileType", "FTerm", "tnoremap <buffer> <C-k> <C-\\><C-n><CMD>q<CR>" },
+      { "FileType", "FTerm", "tnoremap <buffer> <C-l> <C-\\><C-n><CMD>q<CR>" },
     },
   }
 
@@ -227,6 +227,7 @@ function M.keymaps(leaderMappings, vLeaderMappings)
     leaderMappings["xm"] = { "<Plug>(neoterm-repl-send)", "Neoterm Send" }
     leaderMappings["xn"] = { "<Plug>(neoterm-repl-send-line)", "Neoterm Line" }
     vLeaderMappings["xn"] = { "<Plug>(neoterm-repl-send)", "Neoterm Send" }
+    vLeaderMappings["xs"] = { "<cmd>TREPLSendSelection<CR>", "Neoterm Send Selection" }
   end
 
   if O.plugin.kittyrunner then
@@ -251,8 +252,8 @@ function M.keymaps(leaderMappings, vLeaderMappings)
     leaderMappings["tP"] = { "<cmd>SnipReset<cr>", "SnipRun Reset" }
     leaderMappings["tC"] = { "<Plug>SnipReplMemoryClean", "SnipRun Clean" }
 
-    vLeaderMappings["xs"] = { "<cmd>SnipRun<cr>", "SnipRun" }
-    leaderMappings["xs"] = { "<Plug>SnipRun", "SnipRun Line" }
+    -- vLeaderMappings["xs"] = { "<cmd>SnipRun<cr>", "SnipRun" }
+    -- leaderMappings["xs"] = { "<Plug>SnipRun", "SnipRun Line" }
     leaderMappings["xc"] = { "<Plug>SnipRun", "SnipRun" }
   end
 
