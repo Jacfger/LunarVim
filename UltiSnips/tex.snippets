@@ -559,7 +559,7 @@ snippet lr; "left( right)" iA
 endsnippet
 
 context "math()"
-snippet lr| "left| right|" i
+snippet lr| "left| right|" iA
 \left|${1:${VISUAL}}\right|$0
 endsnippet
 
@@ -769,7 +769,7 @@ endsnippet
 
 context "math()"
 snippet norm "norm" iA
-\|$1\|$0
+\left\Vertl$1\right\Vert$0
 endsnippet
 
 priority 100
@@ -977,6 +977,12 @@ snippet letw "let omega" iA
 Let $\Omega \subset \C$ be open.
 endsnippet
 
+priority 1
+context "math()"
+snippet bb; "mathbb" iA
+\mathbb{$1}$0
+endsnippet
+
 context "math()"
 snippet CC "C" iA
 \mathbb{C}
@@ -1001,6 +1007,7 @@ priority 1
 snippet bf; "Bold text" iA
 \textbf{$1}$0
 endsnippet
+
 
 priority 1
 snippet it; "Italic text" iA
