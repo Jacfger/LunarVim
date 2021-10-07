@@ -195,7 +195,7 @@ function M.setup()
   map("n", "<C-q>", "<NOP>", {})
   map("n", "<C-n>", "<NOP>", {})
   map("n", "<C-p>", "<NOP>", {})
-  map("n", "<C-o>", "<NOP>", {})
+  -- map("n", "<C-o>", "<NOP>", {})
 
   -- custom_n_repeat
   map("n", "n", luareq("keymappings").n_repeat, nore)
@@ -259,32 +259,32 @@ function M.setup()
 
   -- better window movement -- tmux_navigator supplies these if installed
   if not O.plugin.tmux_navigator then
-    if O.plugin.splitfocus then
-      -- FIXME: this automatically reenables Focus mode
-      map("n", "<C-h>", focus_fn "split_command('h')", sile)
-      map("n", "<C-j>", focus_fn "split_command('j')", sile)
-      map("n", "<C-k>", focus_fn "split_command('k')", sile)
-      map("n", "<C-l>", focus_fn "split_command('l')", sile)
-      map("n", "<C-w>v", focus_fn "split_command('l')", sile)
-      map("n", "<C-w>s", focus_fn "split_nicely()", sile)
-      map("n", "<C-w>e", focus_fn "focus_equalise()", sile)
-    else
-      map("n", "<C-h>", "<C-w>h", sile)
-      map("n", "<C-j>", "<C-w>j", sile)
-      map("n", "<C-k>", "<C-w>k", sile)
-      map("n", "<C-l>", "<C-w>l", sile)
-    end
+    -- if O.plugin.splitfocus then
+    -- FIXME: this automatically reenables Focus mode
+    --   map("n", "<C-h>", focus_fn "split_command('h')", sile)
+    --   map("n", "<C-j>", focus_fn "split_command('j')", sile)
+    --   map("n", "<C-k>", focus_fn "split_command('k')", sile)
+    --   map("n", "<C-l>", focus_fn "split_command('l')", sile)
+    --   map("n", "<C-w>v", focus_fn "split_command('l')", sile)
+    --   map("n", "<C-w>s", focus_fn "split_nicely()", sile)
+    --   map("n", "<C-w>e", focus_fn "focus_equalise()", sile)
+    -- else
+    map("n", "<C-h>", "<C-w>h", sile)
+    map("n", "<C-j>", "<C-w>j", sile)
+    map("n", "<C-k>", "<C-w>k", sile)
+    map("n", "<C-l>", "<C-w>l", sile)
+    -- end
   end
   -- TODO fix this
   -- Terminal window navigation
-  -- map("t", "<C-h>", [[<C-\><C-N><C-w>h]], nore)
-  -- map("t", "<C-j>", [[<C-\><C-N><C-w>j]], nore)
-  -- map("t", "<C-k>", [[<C-\><C-N><C-w>k]], nore)
-  -- map("t", "<C-l>", [[<C-\><C-N><C-w>l]], nore)
-  map("t", "<C-h>", [[<C-\><C-N>]] .. focus_fn "split_command('h')", sile)
-  map("t", "<C-j>", [[<C-\><C-N>]] .. focus_fn "split_command('j')", sile)
-  map("t", "<C-k>", [[<C-\><C-N>]] .. focus_fn "split_command('k')", sile)
-  map("t", "<C-l>", [[<C-\><C-N>]] .. focus_fn "split_command('l')", sile)
+  map("t", "<C-h>", [[<C-\><C-N><C-w>h]], nore)
+  map("t", "<C-j>", [[<C-\><C-N><C-w>j]], nore)
+  map("t", "<C-k>", [[<C-\><C-N><C-w>k]], nore)
+  map("t", "<C-l>", [[<C-\><C-N><C-w>l]], nore)
+  -- map("t", "<C-h>", [[<C-\><C-N>]] .. focus_fn "split_command('h')", sile)
+  -- map("t", "<C-j>", [[<C-\><C-N>]] .. focus_fn "split_command('j')", sile)
+  -- map("t", "<C-k>", [[<C-\><C-N>]] .. focus_fn "split_command('k')", sile)
+  -- map("t", "<C-l>", [[<C-\><C-N>]] .. focus_fn "split_command('l')", sile)
   map("t", "<Esc>", [[<C-\><C-n>]], nore)
 
   local resize_prefix = "<C-"
@@ -499,7 +499,6 @@ function M.setup()
   map("x", "ic", [[/#+\s*%+<cr>oN]], nore)
 
   -- Spell checking
-  map("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u]]", nore)
 
   map("i", "<M-a>", cmd "normal! A", nore)
   map("i", "<M-i>", cmd "normal! I", nore)

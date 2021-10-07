@@ -16,8 +16,10 @@ function M.config()
     sources = {
       -- Formatters
       formatters.stylua,
-      formatters.prettierd.with {
-        command = "npx prettierd",
+      formatters.prettier.with {
+        {
+          filetypes = { "html", "json", "yaml", "markdown" },
+        },
       },
       -- formatters.rustfmt,
       formatters.shfmt,
