@@ -65,7 +65,7 @@ function M.config()
     update_focused_file = { enable = true },
     view = {
       side = "left",
-      width = 30,
+      width = 15,
       mappings = {
         -- g.nvim_tree_bindings = {
         --     ["u"] = ":lua require'some_module'.some_function()<cr>",

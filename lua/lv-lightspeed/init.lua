@@ -12,7 +12,7 @@ function M.config()
     cycle_group_fwd_key = nil,
     cycle_group_bwd_key = nil,
   }
-  vim.keymap.del({ "o", "x" }, ",")
+  -- vim.keymap.del({ "o", "x" }, ",")
 end
 
 function M.au_unconceal(level)
