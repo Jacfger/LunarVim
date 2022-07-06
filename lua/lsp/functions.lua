@@ -309,7 +309,7 @@ function M.common_on_attach(client, bufnr)
   -- Handle document highlighting
   if O.lsp.document_highlight then
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.document_highlight then
       cmd(
         [[
         augroup lsp_document_highlight
@@ -324,7 +324,7 @@ function M.common_on_attach(client, bufnr)
   end
 
   if O.lsp.live_codelens then
-    if client.resolved_capabilities.code_lens then
+    if client.server_capabilities.code_lens then
       cmd(
         [[
         augroup lsp_codelens_refresh
@@ -339,7 +339,7 @@ function M.common_on_attach(client, bufnr)
   end
 
   if O.lsp.autoecho_line_diagnostics then
-    -- if client.resolved_capabilities.document_highlight then
+    -- if client.server_capabilities.document_highlight then
     -- autocmd CursorHoldI <buffer> lua vim.lsp.buf.signature_help()
     cmd(
       [[ augroup lsp_au
@@ -467,7 +467,7 @@ M.format_on_save = function(disable)
     {
       "BufWritePre",
       "*",
-      "lua vim.lsp.buf.formatting_seq_sync(nil, " .. O.format_on_save_timeout .. ")",
+      "lua vim.lsp.buf.format({async = true, timeout_ms=" .. O.format_on_save_timeout .. "})",
     },
   }
   if disable then

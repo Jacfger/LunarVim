@@ -375,7 +375,7 @@ function M.setup()
   -- end
 
   -- Tab switch buffer
-  map("n", "<tab>", cmd "b#", nore)
+  map("n", "tt", cmd "b#", nore)
   map("n", "<leader><tab>", cmd "bnext", nore)
   map("n", "<leader><S-tab>", cmd "bnext", nore)
   map("n", "<S-tab>", cmd "bprev", nore)
@@ -637,7 +637,9 @@ function M.setup()
   -- Formatting keymaps
   map("n", "gq", require("lsp.functions").format_range_operator, sile)
   map("x", "gq", vim.lsp.buf.range_formatting, sile)
-  map("n", "gf", vim.lsp.buf.formatting, sile)
+  map("n", "gf", function()
+    vim.lsp.buf.format { async = true }
+  end, { silent = true, remap = true })
 
   -- TODO: Use more standard regex syntax
   -- map("n", "/", "/\v", nore)
