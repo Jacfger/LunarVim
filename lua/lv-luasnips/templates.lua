@@ -301,6 +301,7 @@ return {
 	\end{tabular}
 \end{table}
     ]],
+    -- TODO: Change this to lua format
     ["figure"] = [[
 \begin{figure}[${1:htpb}]
 	\centering

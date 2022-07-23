@@ -269,6 +269,7 @@ function M.sandwhich_mark_recipe_fn()
     { silent = true, expr = true }
   )
 end
+
 M.sandwich_marks_recipes = {
   {
     buns = { "\\%([[(]\\|\\{\\)", "\\%([])]\\|\\}\\)" },
@@ -385,6 +386,7 @@ local function sel()
     return (snip and snip.env and snip.env.TM_SELECTED_TEXT) or ""
   end, {})
 end
+
 local function mi(dep)
   return f(function(nodes)
     return nodes[1]
@@ -399,14 +401,17 @@ local function fmt(fn, ipairs)
     return string.format(unpack(fn(args.captures, args.trigger, args)))
   end, ipairs)
 end
+
 local function sub(j)
   return f(function(_, args)
     return string.format("%s", args.captures[j])
   end, {})
 end
+
 local function con(fn)
   return { condition = fn }
 end
+
 local mathmode_ = vim.fn["vimtex#syntax#in_mathzone"]
 local mathmode = {
   condition = function()
@@ -421,18 +426,23 @@ local nonmathmode = {
 local function ms(lhs, rhs)
   return s(lhs, rhs, mathmode)
 end
+
 local function nms(lhs, rhs)
   return s(lhs, rhs, nonmathmode)
 end
+
 local function nw(k)
   return { trig = k, wordTrig = false }
 end
+
 local function re(arg)
   return { trig = arg, regTrig = true }
 end
+
 local function renw(arg)
   return { trig = arg, regTrig = true, wordTrig = false }
 end
+
 local line_begin = { condition = conds.line_begin }
 local no_backslash = {
   condition = function(line_to_cursor, m)
@@ -695,6 +705,7 @@ list_extend(auto, {
     { t { "\\begin{description}", "\t\\item[" }, i(1), t { "]" }, sel(), i(0), t { "", "\\end{description}" } }
   ),
   lns("ali ", { t { "\\begin{align*}", "" }, sel(), i(0), t { "", "\\end{align*}" } }),
+  lns("frame ", { t "\\begin{frame}\frametitle{", i(1), t { "}", "" }, sel(), i(0), t { "", "\\end{frame}" } }),
   lns("alin ", { t { "\\begin{align}", "" }, sel(), i(0), t { "", "\\end{align}" } }),
   lns("eq ", { t { "\\begin{equation*}", "" }, sel(), i(0), t { "", "\\end{equation*}" } }),
   lns("eqn ", { t { "\\begin{equation}", "" }, sel(), i(0), t { "", "\\end{equation}" } }),
@@ -786,10 +797,10 @@ list_extend(auto, {
       return string.format("%s_%s", cap[1], cap[2])
     end, {}),
     {
-      condition = function(_, matched_trigger)
-        return (mathmode_() ~= 0) and (matched_trigger:sub(2, 2) == matched_trigger:sub(3, 3))
-      end,
-    }
+    condition = function(_, matched_trigger)
+      return (mathmode_() ~= 0) and (matched_trigger:sub(2, 2) == matched_trigger:sub(3, 3))
+    end,
+  }
   ),
   ms(renw "__", { t "_{", i(0), t "}" }),
   ms(renw "%^%^", { t "^{", i(0), t "}" }),
@@ -931,6 +942,7 @@ local function infinite_list(item, env, name)
     i(0),
   })
 end
+
 list_extend(snips, {
   infinite_list("\\item ", "itemize"),
   infinite_list("\\item[] ", "description"),
