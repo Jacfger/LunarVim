@@ -12,11 +12,11 @@ yadm-save message="update nvim config": fix-head
     yadm commit -m "{{message}}"
 
 venv-install: 
-    sudo apt install python3.9 python3.9-dev python3.9-venv
-    python3.9 -m venv ~/.config/nvim/.venv
-    ~/.config/nvim/.venv/bin/python3.9 -m pip install pynvim 
-    ~/.config/nvim/.venv/bin/python3.9 -m pip install cairosvg pnglatex jupyter_client ipython pillow plotly kaleido
-    ~/.config/nvim/.venv/bin/python3.9 -m pip install keyring tornado requests
+    sudo apt install python3 python3-dev python3-venv
+    python3 -m venv ~/.config/nvim/.venv
+    ~/.config/nvim/.venv/bin/python3 -m pip install pynvim 
+    ~/.config/nvim/.venv/bin/python3 -m pip install cairosvg pnglatex jupyter_client ipython pillow plotly kaleido
+    ~/.config/nvim/.venv/bin/python3 -m pip install keyring tornado requests
 
 ext-install:
     cargo install stylua 
