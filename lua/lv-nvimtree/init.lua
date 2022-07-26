@@ -8,43 +8,6 @@ function M.config()
 
   local g = vim.g
 
-  g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
-  g.nvim_tree_quit_on_open = 0
-  g.nvim_tree_indent_markers = 1
-  g.nvim_tree_hide_dotfiles = 1
-  g.nvim_tree_git_hl = 1
-  g.nvim_tree_root_folder_modifier = ":t"
-  g.nvim_tree_allow_resize = 1
-  g.nvim_tree_disable_window_pickerq = 1
-
-  g.nvim_tree_show_icons = {
-    git = 1,
-    folders = 1,
-    files = 1,
-    folder_arrows = 1,
-  }
-
-  vim.g.nvim_tree_icons = {
-    default = "",
-    symlink = "",
-    git = {
-      unstaged = "",
-      staged = "S",
-      unmerged = "",
-      renamed = "➜",
-      deleted = "",
-      untracked = "U",
-      ignored = "◌",
-    },
-    folder = {
-      default = "",
-      open = "",
-      empty = "",
-      empty_open = "",
-      symlink = "",
-    },
-  }
-
   -- require"lv-utils".define_augroups {
   --     _nvimtree_statusline = {
   --         {
@@ -53,15 +16,65 @@ function M.config()
   --         }
   --     }
   -- }
+  g.nvim_tree_allow_resize = 1
 
   require("nvim-tree").setup {
+    actions = {
+      open_file = {
+        quit_on_open = false,
+        window_picker = {
+          enable = true,
+        },
+      },
+    },
+    filters = {
+      custom = { ".git", "node_modules", ".cache" },
+      dotfiles = true,
+    },
+    renderer = {
+      indent_markers = {
+        enable = true,
+      },
+      highlight_git = true,
+      root_folder_modifier = ":t",
+      icons = {
+        show = {
+          git = true,
+          folder = true,
+          file = true,
+          folder_arrow = true,
+        },
+        glyphs = {
+          default = "",
+          symlink = "",
+          git = {
+            unstaged = "",
+            staged = "S",
+            unmerged = "",
+            renamed = "➜",
+            deleted = "",
+            untracked = "U",
+            ignored = "◌",
+          },
+          folder = {
+            default = "",
+            open = "",
+            empty = "",
+            empty_open = "",
+            symlink = "",
+          },
+        },
+      },
+    },
     disable_netrw = true,
     hijack_netrw = true,
     open_on_setup = true,
-    auto_close = O.auto_close_tree,
     open_on_tab = false,
     ignore_ft_on_setup = { "startify", "dashboard" },
-    lsp_diagnostics = true,
+    diagnostics = {
+      enable = true,
+      show_on_dirs = true,
+    },
     update_focused_file = { enable = true },
     view = {
       side = "left",
