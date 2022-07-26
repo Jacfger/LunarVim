@@ -703,10 +703,10 @@ return packer.startup(function(use)
   }
   use {
     "p00f/clangd_extensions.nvim",
-    config = function()
-      require("lsp.clangd").setup()
-    end,
-    ft = { "c", "cpp" },
+    -- config = function()
+    --   require("lsp.clangd").setup()
+    -- end,
+    -- ft = { "c", "cpp" },
   }
   use {
     "saecki/crates.nvim",
