@@ -270,7 +270,7 @@ return packer.startup(function(use)
       require "lv-lualine"
     end,
   }
-  use "nvim-lua/lsp-status.nvim"
+  -- use "nvim-lua/lsp-status.nvim"
   use "SmiteshP/nvim-gps"
 
   use {
@@ -730,18 +730,18 @@ return packer.startup(function(use)
   use { "elixir-editors/vim-elixir", ft = { "elixir", "eelixir", "euphoria3" } }
 
   -- Javascript / Typescript
-  use {
-    "jose-elias-alvarez/nvim-lsp-ts-utils",
-    ft = {
-      "javascript",
-      "javascriptreact",
-      "javascript.jsx",
-      "typescript",
-      "typescriptreact",
-      "typescript.tsx",
-    },
-  }
-
+  -- use {
+  --   "jose-elias-alvarez/nvim-lsp-ts-utils",
+  --   ft = {
+  --     "javascript",
+  --     "javascriptreact",
+  --     "javascript.jsx",
+  --     "typescript",
+  --     "typescriptreact",
+  --     "typescript.tsx",
+  --   },
+  -- }
+  --
   -- Flutter
   use {
     "akinsho/flutter-tools.nvim",
