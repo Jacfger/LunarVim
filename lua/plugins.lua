@@ -270,7 +270,7 @@ return packer.startup(function(use)
       require "lv-lualine"
     end,
   }
-  -- use "nvim-lua/lsp-status.nvim"
+  use "nvim-lua/lsp-status.nvim"
   use "SmiteshP/nvim-gps"
 
   use {
