@@ -21,22 +21,24 @@ local nl = t { "", "" }
 local function nlt(line)
   return t { "", line }
 end
+
 local function tnl(line)
   return t { line, "" }
 end
+
 local function mi(dep)
   return f(function(nodes)
     return nodes[1]
   end, { dep })
 end
 
-require("luasnip").autosnippets.fish = {
-  s("elif", {
-    t "else if ",
-    i(0),
-    t { "", "" },
-  }),
-}
+-- require("luasnip").autosnippets.fish = {
+--   s("elif", {
+--     t "else if ",
+--     i(0),
+--     t { "", "" },
+--   }),
+-- }
 require("luasnip").snippets.fish = {
   s("if", {
     t "if ",
