@@ -64,7 +64,7 @@ local mode_indicator = {
         -- mode_text = mode_name
       end
 
-      vim.cmd("hi GalaxyViMode guifg=" .. mode_color[mode_name])
+      vim.cmd("hi GalaxyViMode fg=" .. mode_color[mode_name])
       return "▊"
     end,
     separator_highlight = "StatusLineSeparator",

@@ -406,20 +406,20 @@ return packer.startup(function(use)
     "lukas-reineke/indent-blankline.nvim",
     event = BufRead,
     config = function()
-      vim.cmd [[highlight IndentBlanklineIndent6 guifg=#000000 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent5 guifg=#000000 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent4 guifg=#000000 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent3 guifg=#000000 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent2 guifg=#000000 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent1 guifg=#000000 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent5 guifg=#E06C75 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent4 guifg=#E5C07B gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
-      -- vim.cmd [[highlight IndentBlanklineIndent2 guifg=#56B6C2 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent2 guifg=#61AFEF gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent1 guifg=#C678DD gui=nocombine]]
-      -- vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
-      -- vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent6 fg=#000000 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent5 fg=#000000 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent4 fg=#000000 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent3 fg=#000000 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent2 fg=#000000 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent1 fg=#000000 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent5 fg=#E06C75 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent4 fg=#E5C07B gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent3 fg=#98C379 gui=nocombine]]
+      -- vim.cmd [[highlight IndentBlanklineIndent2 fg=#56B6C2 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent2 fg=#61AFEF gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent1 fg=#C678DD gui=nocombine]]
+      -- vim.cmd [[highlight IndentBlanklineIndent1 bg=#1f1f1f gui=nocombine]]
+      -- vim.cmd [[highlight IndentBlanklineIndent2 bg=#1a1a1a gui=nocombine]]
 
       -- vim.opt.list = true
       -- vim.opt.listchars:append "space:⋅"
@@ -631,33 +631,33 @@ return packer.startup(function(use)
   -- Tmux navigator
   use { "christoomey/vim-tmux-navigator", disable = not O.plugin.tmux_navigator }
 
-  use {
-    "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
-    config = function()
-      vim.schedule(function()
-        require "copilot"
-      end)
-    end,
-  }
-  use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua", "nvim-cmp" },
-  }
   -- use {
-  --   "github/copilot.vim",
-  --   setup = function()
-  --     vim.g.copilot_no_tab_map = true
-  --     vim.g.copilot_enabled = true
-  --     -- vim.g.copilot_filetypes = { ["*"] = false }
-  --   end,
+  --   "zbirenbaum/copilot.lua",
+  --   event = "VimEnter",
   --   config = function()
-  --     local map = vim.keymap.set
-  --     map("i", O.plugin.copilot.key, [[copilot#Accept("")]], { expr = true, silent = true })
+  --     vim.defer_fn(function()
+  --       require("copilot").setup()
+  --     end, 100)
   --   end,
-  --   cmd = "Copilot",
-  --   disable = not O.plugin.copilot,
   -- }
+  -- use {
+  --   "zbirenbaum/copilot-cmp",
+  --   after = { "copilot.lua", "nvim-cmp" },
+  -- }
+  use {
+    "github/copilot.vim",
+    setup = function()
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_enabled = true
+      -- vim.g.copilot_filetypes = { ["*"] = false }
+    end,
+    config = function()
+      local map = vim.keymap.set
+      map("i", O.plugin.copilot.key, [[copilot#Accept("")]], { expr = true, silent = true })
+    end,
+    cmd = "Copilot",
+    disable = not O.plugin.copilot,
+  }
 
   -- LANGUAGE SPECIFIC GOES HERE
 

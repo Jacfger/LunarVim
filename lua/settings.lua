@@ -12,8 +12,8 @@ if vim.g.nvui then
   cmd "NvuiFrameless v:false"
 end
 if O.transparent_window then
-  cmd "au ColorScheme * hi Normal ctermbg=none guibg=none"
-  cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
+  cmd "au ColorScheme * hi Normal ctermbg=none bg=none"
+  cmd "au ColorScheme * hi SignColumn ctermbg=none bg=none"
 end
 
 ---  SETTINGS  ---

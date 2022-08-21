@@ -20,10 +20,10 @@ utils.new_command.Writing = "lua vim.cmd(O.lighttheme)"
 
 utils.augroup._nebulous_patches.Colorscheme.nebulous = function()
   vim.cmd [[
-    hi Conceal ctermfg=223 ctermbg=235 guifg=#ebdbb2 guibg=#282828
-    hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
-    hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
-    hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
+    hi Conceal ctermfg=223 ctermbg=235 fg=#ebdbb2 bg=#282828
+    hi LspReferenceRead cterm=bold ctermbg=red bg=#464646
+    hi LspReferenceText cterm=bold ctermbg=red bg=#464646
+    hi LspReferenceWrite cterm=bold ctermbg=red bg=#464646
 ]]
 end
 
@@ -38,7 +38,7 @@ local M = {
         variables = false,
       },
       custom_colors = { -- FIXME: custom colors not bound
-        -- Conceal = { ctermfg = "223", ctermbg = "235 ", guifg = "#ebdbb2", guibg = "#282828" },
+        -- Conceal = { ctermfg = "223", ctermbg = "235 ", fg = "#ebdbb2", bg = "#282828" },
         LspReferenceRead = { style = "bold", bg = "#464646" },
         LspReferenceText = { style = "bold", bg = "#464646" },
         LspReferenceWrite = { style = "bold", bg = "#464646" },
