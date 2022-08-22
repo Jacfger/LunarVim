@@ -94,7 +94,7 @@ O = {
       justfile = "just",
     },
   },
-  python_interp = CONFIG_PATH .. "/.venv/bin/python3.9", -- TODO: make a venv for this
+  python_interp = CONFIG_PATH .. "/.venv/bin/python", -- TODO: make a venv for this
   treesitter = {
     ensure_installed = "all",
     ignore_install = {},
