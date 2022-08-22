@@ -943,7 +943,7 @@ M.autosnippets = auto
 function M.ftplugin()
   -- TODO: inline these variables
   local conf = {
-    conceal = 2,
+    conceal = 0,
     -- theme = O.lighttheme,
     fontsize = O.bigfontsize,
     filetypes = { "tex", "bib" },
