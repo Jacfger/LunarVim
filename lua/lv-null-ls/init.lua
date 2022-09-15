@@ -42,11 +42,11 @@ function M.config()
       -- diagnostics.pylint,
       -- diagnostics.hadolint,
       -- -- diagnostics.luacheck,
-      diagnostics.write_good,
+      -- diagnostics.write_good,
       -- diagnostics.proselint,
       -- diagnostics.vale, -- lets install vale-linter
       -- -- diagnostics.misspell,
-      diagnostics.markdownlint,
+      -- diagnostics.markdownlint,
       diagnostics.yamllint,
       -- diagnostics.gccdiag,
 

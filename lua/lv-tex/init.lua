@@ -797,10 +797,10 @@ list_extend(auto, {
       return string.format("%s_%s", cap[1], cap[2])
     end, {}),
     {
-    condition = function(_, matched_trigger)
-      return (mathmode_() ~= 0) and (matched_trigger:sub(2, 2) == matched_trigger:sub(3, 3))
-    end,
-  }
+      condition = function(_, matched_trigger)
+        return (mathmode_() ~= 0) and (matched_trigger:sub(2, 2) == matched_trigger:sub(3, 3))
+      end,
+    }
   ),
   ms(renw "__", { t "_{", i(0), t "}" }),
   ms(renw "%^%^", { t "^{", i(0), t "}" }),
@@ -976,13 +976,16 @@ function M.ftplugin()
           -- uncomment the following line.
           --"--outdir out",
         },
-        forwardSearchAfter = false,
+        forwardSearchAfter = true,
         onSave = true,
       },
       chktex = { on_edit = true, on_open_and_save = true },
       diagnostics_delay = vim.opt.updatetime,
-      formatter_line_length = 80,
-      forward_search = { args = {}, executable = "" },
+      formatter_line_length = 999,
+      forward_search = {
+        args = {},
+        executable = "",
+      },
       latexFormatter = "latexindent",
       latexindent = { modify_line_breaks = false },
     },
