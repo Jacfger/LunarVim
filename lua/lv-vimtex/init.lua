@@ -11,7 +11,7 @@ function M.config()
   vim.g.vimtex_compiler_method = "tectonic"
   vim.g.vimtex_compiler_generic = { cmd = "watchexec -e tex -- tectonic --synctex --keep-logs *.tex" }
   vim.g.vimtex_compiler_tectonic = {
-    ["options"] = { "--synctex", "--keep-logs" },
+    ["options"] = { "--synctex", "--keep-logs", "--print" },
   }
   vim.g.vimtex_compiler_latexmk = {
     ["options"] = {
