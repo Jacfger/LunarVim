@@ -1094,7 +1094,7 @@ return packer.startup(function(use)
   }
   use { "p00f/nvim-ts-rainbow", disable = not O.plugin.ts_rainbow }
   use { "nvim-treesitter/nvim-treesitter-refactor" }
-  use { "haringsrob/nvim_context_vt" }
+  -- use { "haringsrob/nvim_context_vt" }
 
   -- Startup profiler
   use {
