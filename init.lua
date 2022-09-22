@@ -10,7 +10,8 @@ require("lvim.bootstrap"):init(base_dir)
 require("lvim.config"):load()
 
 local plugins = require "lvim.plugins"
-require("lvim.plugin-loader").load { plugins, lvim.plugins }
+local coexist_plugins = require "coexistence.plugins"
+require("lvim.plugin-loader").load { plugins, lvim.plugins, coexist_plugins }
 
 local Log = require "lvim.core.log"
 Log:debug "Starting LunarVim"
@@ -19,3 +20,8 @@ local commands = require "lvim.core.commands"
 commands.load(commands.defaults)
 
 require("lvim.lsp").setup()
+
+require "coexistence.keymappings"
+require "coexistence.options"
+
+require "coexistence.mocking-spongebob.main"
