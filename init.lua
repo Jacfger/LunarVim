@@ -10,7 +10,8 @@ require("lvim.bootstrap"):init(base_dir)
 require("lvim.config"):load()
 
 local plugins = require "lvim.plugins"
-local coexist_plugins = require "coexistence.plugins"
+local coexi = require "coexistence.plugins"
+local coexist_plugins = coexi.plugins
 require("lvim.plugin-loader").load { plugins, lvim.plugins, coexist_plugins }
 
 local Log = require "lvim.core.log"
