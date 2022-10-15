@@ -467,7 +467,7 @@ M.format_on_save = function(disable)
     {
       "BufWritePre",
       "*",
-      "lua vim.lsp.buf.format({async = true, timeout_ms=" .. O.format_on_save_timeout .. "})",
+      "lua vim.lsp.buf.formatting_seq_sync(nil, " .. O.format_on_save_timeout .. ")",
     },
   }
   if disable then
