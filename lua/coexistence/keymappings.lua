@@ -1,5 +1,7 @@
 vim.keymap.set("x", ";", ":", {})
 vim.keymap.set("n", ";", ":", {})
+vim.keymap.set("n", ">", ">>", { nowait = true })
+vim.keymap.set("n", "<", "<<", { nowait = true })
 vim.keymap.set("n", "<ESC>", "<cmd>nohls<cr>", {})
 
 
