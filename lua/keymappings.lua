@@ -637,8 +637,9 @@ function M.setup()
   -- Formatting keymaps
   map("n", "gq", require("lsp.functions").format_range_operator, sile)
   map("x", "gq", vim.lsp.buf.range_formatting, sile)
-  map("n", "gf", vim.lsp.buf.formatting, sile)
-
+  map("n", "gf", function()
+    vim.lsp.buf.format { async = true }
+  end, { silent = true, remap = true })
   -- TODO: Use more standard regex syntax
   -- map("n", "/", "/\v", nore)
 
@@ -900,7 +901,13 @@ function M.setup()
       a = { cmd "wa", "Write All" },
       c = { cmd "Bdelete!", "Close" },
       d = { cmd "bdelete!", "Close+Win" },
-      f = { vim.lsp.buf.formatting, "Format" },
+
+      f = {
+        function()
+          vim.lsp.buf.format { async = true }
+        end,
+        "Format",
+      },
       -- n = { cmd "tabnew", "New" },
       n = { cmd "enew", "New" },
       -- W = {cmd "BufferWipeout", "wipeout buffer"},
