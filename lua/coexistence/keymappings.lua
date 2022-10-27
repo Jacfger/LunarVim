@@ -1,3 +1,4 @@
+local M = {}
 vim.keymap.set("x", ";", ":", {})
 vim.keymap.set("n", ";", ":", {})
 vim.keymap.set("n", ">", ">>", { nowait = true })
@@ -16,6 +17,18 @@ vim.keymap.set("x", "<M-p>", "pgv", {}) -- Paste and keep selection
 vim.keymap.set("x", "y", "myy`y", {})
 vim.keymap.set("x", "Y", "myY`y", {}) -- copy linewise
 vim.keymap.set("x", "<M-y>", "y", {})
+
+
+-- Select whole file
+vim.keymap.set("o", "iG", "<cmd>normal! mzggVG<cr>`z", { noremap = true, silent = true })
+vim.keymap.set("x", "iG", "gg0oG$", { noremap = true, silent = true })
+vim.keymap.set("o", "iG", "<cmd>normal vgg0oG$<cr>", { noremap = true, silent = true })
+
+-- Make change line (cc) preserve indentation
+vim.keymap.set("n", "cc", "^cg_", { noremap = true, silent = true })
+
+-- Set local leader
+vim.g.maplocalleader = ","
 
 -- Add meta version that doesn't affect the clipboard
 local function dont_clobber_if_meta(m, c)
@@ -45,5 +58,10 @@ dont_clobber_by_default("n", "C")
 dont_clobber_by_default("n", "x")
 dont_clobber_by_default("x", "x")
 
-local mappings = require('coexistence.which-key').mappings
-require("which-key").register(mappings.maps, mappings.opts)
+local mappings = require('coexistence.which-key-mapping').mappings
+local whichkey = require("which-key")
+whichkey.register(mappings.maps, mappings.opts)
+-- require("which-key").register(mappings.maps, mappings.opts)
+
+
+return M

@@ -32,9 +32,9 @@ local mode_adapters = {
 local defaults = {
   insert_mode = {
     -- Move current line / block with Alt-j/k ala vscode.
-    ["<A-j>"] = "<Esc>:m .+1<CR>==gi",
+    ["<C-j>"] = "<Esc>:m .+1<CR>==gi",
     -- Move current line / block with Alt-j/k ala vscode.
-    ["<A-k>"] = "<Esc>:m .-2<CR>==gi",
+    ["<C-k>"] = "<Esc>:m .-2<CR>==gi",
     -- navigation
     ["<A-Up>"] = "<C-\\><C-N><C-w>k",
     ["<A-Down>"] = "<C-\\><C-N><C-w>j",
@@ -56,8 +56,8 @@ local defaults = {
     ["<C-Right>"] = ":vertical resize +2<CR>",
 
     -- Move current line / block with Alt-j/k a la vscode.
-    ["<A-j>"] = ":m .+1<CR>==",
-    ["<A-k>"] = ":m .-2<CR>==",
+    -- ["<A-j>"] = ":m .+1<CR>==",
+    -- ["<A-k>"] = ":m .-2<CR>==",
 
     -- QuickFix
     ["]q"] = ":cnext<CR>",

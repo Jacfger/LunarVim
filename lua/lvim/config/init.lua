@@ -170,7 +170,10 @@ function M:reload()
     local plugins = reload "lvim.plugins"
     local plugin_loader = reload "lvim.plugin-loader"
 
-    plugin_loader.reload { plugins, lvim.plugins }
+    local coexi = require "coexistence.plugins"
+    local coexist_plugins = coexi.plugins
+    require("lvim.plugin-loader").load { plugins, lvim.plugins, coexist_plugins }
+    plugin_loader.reload { plugins, lvim.plugins , coexist_plugins}
     reload("lvim.core.theme").setup()
     reload("lvim.utils.hooks").run_post_reload()
   end)

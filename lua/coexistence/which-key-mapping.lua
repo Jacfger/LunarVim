@@ -20,8 +20,8 @@ M.mappings = {
     ["f"] = { "<cmd>Telescope find_files<cr>", "Find All File" },
     b = {
       name = "Buffers",
-      j = { "<cmd>BufferLinePick<cr>", "Jump to Tab" },
-      s = { "<cmd>Telescope buffers<cr>", "Search Buffer Name" },
+      s = { "<cmd>BufferLinePick<cr>", "Switch to Tab" },
+      j = { "<cmd>Telescope buffers<cr>", "Jump to Buffer by Name" },
       b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
       n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
       -- w = { "<cmd>BufferWipeout<cr>", "Wipeout" }, -- TODO: implement this for bufferline
@@ -380,5 +380,35 @@ M.mappings = {
     -- },
   },
 }
+
+function M.whichkey(maps, opts)
+  if opts == nil then
+    opts = {}
+  end
+  require("which-key").register(maps, vim.tbl_extend("error", opts, {
+    mode = "n", -- NORMAL mode
+    silent = true,
+    noremap = false,
+    nowait = false,
+  }))
+end
+
+function M.localleader(maps, opts)
+  if opts == nil then
+    opts = {}
+  end
+  opts = vim.tbl_extend("keep", opts, {
+    prefix = "<localleader>",
+    buffer = 0,
+  })
+  M.whichkey(maps, opts)
+end
+
+function M.vlocalleader(maps, opts)
+  if opts == nil then
+    opts = {}
+  end
+  M.localleader(maps, vim.tbl_extend("keep", opts, { mode = "v" }))
+end
 
 return M
