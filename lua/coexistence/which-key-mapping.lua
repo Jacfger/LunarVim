@@ -21,6 +21,7 @@ M.mappings = {
     b = {
       name = "Buffers",
       s = { "<cmd>BufferLinePick<cr>", "Switch to Tab" },
+      c = { require("lvim.core.bufferline").buf_kill(), "Close Tab" },
       j = { "<cmd>Telescope buffers<cr>", "Jump to Buffer by Name" },
       b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
       n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
