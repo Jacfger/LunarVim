@@ -58,7 +58,13 @@ M.mappings = {
       S = { "<cmd><ISwap<cr>", "Interatively Swap" },
       s = { "<cmd><ISwap<cr>", "Interatively Swap With" },
     },
-    x = "Execute/Send",
+    x = {
+      name = "Execute/Send",
+      ["<cr>"] = "Neoterm AutoMap",
+      ["m"] = { "<Plug>(neoterm-repl-send)", "Neoterm Send" },
+      ["n"] = { "<Plug>(neoterm-repl-send-line)", "Neoterm Line" },
+    },
+
     q = { "<C-W>q", "Quit" },
     Q = { "<C-W>q", "Quit" },
     o = {
@@ -77,6 +83,9 @@ M.mappings = {
     },
     t = { name = "Terminals",
       ["<cr>"] = { "<cmd>Tnew<CR>", "Open Terminal" },
+      ["<tab>"] = { "<cmd>Ttoggle<cr>", "Neoterm Toggle" },
+      ["t"] = { "<cmd>Tnew<CR>", "T ..." },
+      ["l"] = { "<cmd>Tls<cr>", "Neoterm list" },
     },
     p = { name = "Project (Tasks)" },
     T = {
@@ -381,6 +390,23 @@ M.mappings = {
   },
 }
 
+M.vmappings = {
+  opts = {
+    mode = "v", -- NORMAL mode
+    prefix = "<leader>",
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = true, -- use `nowait` when creating keymaps
+  },
+  maps = {
+    x = {
+      name = "Execute/Send",
+      ["<cr>"] = "Neoterm AutoMap",
+      ["n"] = { "<Plug>(neoterm-repl-send)", "Neoterm Send" },
+    },
+  },
+}
 function M.whichkey(maps, opts)
   if opts == nil then
     opts = {}

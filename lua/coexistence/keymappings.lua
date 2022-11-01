@@ -58,10 +58,17 @@ dont_clobber_by_default("n", "C")
 dont_clobber_by_default("n", "x")
 dont_clobber_by_default("x", "x")
 
-local mappings = require('coexistence.which-key-mapping').mappings
 local whichkey = require("which-key")
+local mappings = require('coexistence.which-key-mapping').mappings
 whichkey.register(mappings.maps, mappings.opts)
+local vmappings = require('coexistence.which-key-mapping').vmappings
+whichkey.register(vmappings.maps, vmappings.opts)
 -- require("which-key").register(mappings.maps, mappings.opts)
+
+-- local map = vim.keymap.set
+-- vim.cmd [[ command -nargs=+ Tmem :lua require("lv-terms").Tmem("<args>") ]]
+
+-- vim.g.neoterm_automap_keys = "<leader>x<cr>"
 
 
 return M

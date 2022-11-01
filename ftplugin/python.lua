@@ -1,0 +1,2 @@
+-- TODO: neoterm doesn't invoke ipython
+-- vim.g.neoterm_repl_command = { "ipython" }
