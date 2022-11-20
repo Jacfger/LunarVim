@@ -40,7 +40,7 @@ M.mappings = {
       },
       f = {
         function()
-          vim.lsp.buf.format { async = true }
+          vim.lsp.buf.format { async = true, filter = function(client) return client.name ~= "tsserver" end }
         end,
         "Format Buffer",
       },

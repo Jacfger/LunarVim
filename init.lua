@@ -13,6 +13,7 @@ end
 require("lvim.bootstrap"):init(base_dir)
 
 require("lvim.config"):load()
+require("coexistence").sufconfig()
 
 local plugins = require "lvim.plugins"
 local coexi = require "coexistence.plugins"
@@ -32,3 +33,27 @@ require("lvim.lsp").setup()
 require "coexistence.keymappings"
 -- require "coexistence.options"
 -- require "coexistence.mocking-spongebob.main"
+  vim.cmd [[
+" disable syntax highlighting in big files
+function! DisableSyntaxTreesitter()
+    echo("Big file, disabling syntax, treesitter and folding")
+    if exists(':TSBufDisable')
+        exec 'TSBufDisable autotag'
+        exec 'TSBufDisable highlight'
+    endif
+
+    set foldmethod=manual
+    syntax clear
+    syntax off
+    filetype off
+    set noundofile
+    set noswapfile
+    set noloadplugins
+    set lazyredraw
+endfunction
+
+augroup BigFileDisable
+    autocmd!
+    autocmd BufReadPre,FileReadPre * if getfsize(expand("%")) > 1024 * 1024 | exec DisableSyntaxTreesitter() | endif
+augroup END
+  ]]

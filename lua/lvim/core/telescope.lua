@@ -102,7 +102,7 @@ function M.config()
         "--line-number",
         "--column",
         "--smart-case",
-        "--hidden",
+        -- "--hidden",
         "--glob=!.git/",
       },
       ---@usage Mappings are fully customizable. Many familiar mapping patterns are setup as defaults.

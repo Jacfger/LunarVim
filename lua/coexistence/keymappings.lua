@@ -29,6 +29,9 @@ vim.keymap.set("n", "cc", "^cg_", { noremap = true, silent = true })
 
 -- Set local leader
 vim.g.maplocalleader = ","
+-- Buffer movemenet
+vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<cr>", { noremap = true, silent = true })
 
 -- Add meta version that doesn't affect the clipboard
 local function dont_clobber_if_meta(m, c)
@@ -68,7 +71,7 @@ whichkey.register(vmappings.maps, vmappings.opts)
 -- local map = vim.keymap.set
 -- vim.cmd [[ command -nargs=+ Tmem :lua require("lv-terms").Tmem("<args>") ]]
 
--- vim.g.neoterm_automap_keys = "<leader>x<cr>"
+vim.g.neoterm_automap_keys = "<leader>x<cr>" -- without this it overwrites <localleader>tt
 
 
 return M
