@@ -19,6 +19,8 @@ local plugins = require "lvim.plugins"
 local coexi = require "coexistence.plugins"
 local coexist_plugins = coexi.plugins
 require("lvim.plugin-loader").load { plugins, lvim.plugins, coexist_plugins }
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 require("lvim.core.theme").setup()
 
@@ -31,6 +33,8 @@ commands.load(commands.defaults)
 require("lvim.lsp").setup()
 
 require "coexistence.keymappings"
+-- lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+-- table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 -- require "coexistence.options"
 -- require "coexistence.mocking-spongebob.main"
   vim.cmd [[

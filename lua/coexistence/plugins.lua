@@ -96,11 +96,7 @@ M.plugins = {
             require("coexistence.extra.vimtex").config()
         end,
     },
-    -- {
-    --   "github/copilot.vim",
-    -- },
-    {
-        "zbirenbaum/copilot.lua",
+    { "zbirenbaum/copilot.lua",
         event = { "VimEnter" },
         config = function()
             vim.defer_fn(function()
@@ -111,14 +107,18 @@ M.plugins = {
         end,
     },
 
-    {
-        "zbirenbaum/copilot-cmp",
+    { "zbirenbaum/copilot-cmp",
         after = { "copilot.lua", "nvim-cmp" },
+        config = function()
+            require("copilot_cmp").setup()
+        end
     },
+    -- {
+    --   "github/copilot.vim",
+    -- },
     {
         "sindrets/diffview.nvim",
         requires = "nvim-lua/plenary.nvim"
     },
 }
-
 return M
