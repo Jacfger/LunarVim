@@ -15,7 +15,7 @@ function M.config()
       hijack_directories = {
         enable = false,
       },
-      update_cwd = true,
+      update_cwd = false,
       diagnostics = {
         enable = lvim.use_icons,
         show_on_dirs = false,
@@ -28,7 +28,7 @@ function M.config()
       },
       update_focused_file = {
         enable = true,
-        update_cwd = true,
+        update_root = true,
         ignore_list = {},
       },
       system_open = {
