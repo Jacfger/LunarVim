@@ -145,9 +145,9 @@ lvim.builtin.treesitter.textobjects = {
     },
 }
 
-local Log = require "lvim.core.log"
-Log:warn("Set textobjects select?")
-Log:warn(lvim.builtin.treesitter.textobjects.select.enable)
+-- local Log = require "lvim.core.log"
+-- Log:warn("Set textobjects select?")
+-- Log:warn(lvim.builtin.treesitter.textobjects.select.enable)
 -- require("nvim-treesitter.configs").setup {
 --   -- ensure_installed = tsconfig.ensure_installed, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 --   -- ignore_install = tsconfig.ignore_install,
